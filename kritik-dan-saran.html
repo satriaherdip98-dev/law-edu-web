@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kritik dan Saran</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+    *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+
+    body{
+      margin:0;
+      width:100%;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+      overflow-x:hidden;
+      background: linear-gradient(to bottom,#e0f2fe,#f0f9ff,#f8fafc);
+      background-attachment: fixed;
+      position: relative;
+      font-size: clamp(14px, 1.5vw, 16px);
+      color:#0f172a;
+    }
+
+    .container{
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 430px;
+      padding: 35px 25px;
+      border-radius: 30px;
+      background: linear-gradient(160deg, #1e3a8a, #2563eb, #3b82f6) !important;
+      backdrop-filter: blur(20px);
+      border: none !important;
+      box-shadow:
+        0 20px 40px rgba(59,130,246,0.15),
+        0 0 0 1px rgba(255,255,255,0.8);
+      text-align: center;
+      animation: fadeIn 1s ease;
+      transition: all 0.3s ease;
+    }
+
+    @keyframes fadeIn{
+      from{ opacity:0; transform: translateY(20px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    .materi-header{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:20px;
+      margin-bottom:25px;
+      text-align:left;
+    }
+
+    h2{
+      color:white;
+      font-weight:600;
+      letter-spacing:1px;
+      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+    }
+
+    .back-btn{
+      width:100%;
+      margin-bottom:18px;
+      padding:12px 15px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 15px;
+      background: linear-gradient(160deg, #2563eb, #3b82f6) !important;
+      color: #e2e8f0;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      transition:0.3s;
+    }
+
+    .back-btn.small{
+      width: 45px;
+      height: 45px;
+      padding: 0;
+      border-radius: 15px;
+    }
+
+    .back-btn:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.14);
+    }
+
+    .content{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      text-align:left;
+      margin-top: 10px;
+    }
+
+    .field{
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .field label{
+      display:block;
+      color:white;
+      font-weight:600;
+      margin-bottom:10px;
+      font-size: 0.95rem;
+    }
+
+    textarea{
+      width:100%;
+      min-height: 120px;
+      resize: vertical;
+      padding: 14px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.14);
+      color: white;
+      outline: none;
+      font-size: 0.95rem;
+    }
+
+    textarea::placeholder{ color:#cbd5e1; }
+
+    .actions{
+      margin-top: 8px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .submit-btn{
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg,#38bdf8,#6366f1);
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor:pointer;
+      transition: 0.3s;
+      box-shadow: 0 10px 25px rgba(99,102,241,0.35);
+    }
+
+    .submit-btn:hover{
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    @media(max-width:480px){
+      .container{ padding: 30px 20px; }
+    }
+
+    @media (min-width: 1024px){
+      body{ align-items:flex-start; }
+      .container{ max-width: 900px; margin: 40px auto; padding: 45px 40px; }
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="materi-header">
+      <button class="back-btn small" onclick="goBack()" aria-label="Kembali">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <h2>Kritik dan Saran</h2>
+    </div>
+
+    <div class="content">
+      <div class="field">
+        <label for="kritik">Isi Kritik</label>
+        <textarea id="kritik" placeholder="Tulis kritik yang membangun..."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="saran">Isi Saran</label>
+        <textarea id="saran" placeholder="Tulis saran untuk perbaikan..."></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="submit-btn" type="button" onclick="submitForm()">
+          Kirim
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+function goBack(){
+  window.location.href = '../index.html#dashboard';
+}
+</script>
+
+  <script type="module">
+  // Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCC3KzdCw-MMrAlxM4H0wGl3UoSZyrL2OM",
+    authDomain: "law-edu-web.firebaseapp.com",
+    databaseURL: "https://law-edu-web-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "law-edu-web",
+    storageBucket: "law-edu-web.firebasestorage.app",
+    messagingSenderId: "850688623558",
+    appId: "1:850688623558:web:72eec3fed1f57e8152a8c7",
+    measurementId: "G-EPRR6XEY8N"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // FUNCTION SUBMIT
+  window.submitForm = function(){
+    console.log("KIRIM KE FIREBASE");
+    const kritik = document.getElementById('kritik').value.trim();
+    const saran = document.getElementById('saran').value.trim();
+
+    if(!kritik && !saran){
+      alert('Isi dulu!');
+      return;
+    }
+
+    push(ref(db, 'kritik_saran'), {
+      kritik: kritik,
+      saran: saran,
+      waktu: new Date().toLocaleString()
+    })
+    .then(() => {
+      alert("✅ Berhasil dikirim!");
+      document.getElementById('kritik').value = "";
+      document.getElementById('saran').value = "";
+    })
+    .catch(err => {
+      alert("❌ Error: " + err);
+    });
+  }
+</script>
+</body>
+</html>
+
