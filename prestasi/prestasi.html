@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prestasi Siswa</title>
+
+<style>
+body{
+  font-family:Poppins,sans-serif;
+  background:linear-gradient(to bottom,#e0f2fe,#f8fafc);
+  padding:20px;
+}
+.card{
+  max-width:800px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+h2{text-align:center;}
+.item{
+  padding:12px;
+  border-bottom:1px solid #ddd;
+}
+.top{
+  font-weight:bold;
+  color:#2563eb;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>🏆 Prestasi Siswa</h2>
+  <div id="list"></div>
+</div>
+
+<script>
+let data = JSON.parse(localStorage.getItem("prestasi")) || [];
+
+let html = "";
+
+if(data.length === 0){
+  html = "<p>Belum ada data.</p>";
+}else{
+  data.reverse().forEach((d,i)=>{
+    html += `
+      <div class="item ${i===0 ? 'top' : ''}">
+        ${i+1}. ${d.nama} - Skor: ${d.skor}
+      </div>
+    `;
+  });
+}
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Prestasi</title>
+</head>
+
+<body>
+
+  <h2>🏆 Prestasi Siswa</h2>
+
+  <div id="list">Belum ada data.</div>
+
+  <script>
+    let html = `
+      <ul>
+        <li>Juara 1 Lomba IT</li>
+        <li>Juara 2 Debat</li>
+      </ul>
+    `;
+
+    document.getElementById("list").innerHTML = html;
+  </script>
+
+</body>
+</html>
+</body>
+</html>

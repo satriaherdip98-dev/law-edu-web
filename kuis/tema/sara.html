@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HOAKS DAN LITERASI DIGITAL</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+/* ===== GLOBAL ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  background:linear-gradient(135deg,#e0f2fe,#f8fafc);
+  display:flex;
+  justify-content:center;
+  padding:20px;
+  color:#0f172a;
+}
+
+/* ===== LAYOUT ===== */
+.wrap{max-width:900px;width:100%;}
+.card{
+  background:white;
+  border-radius:24px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+  overflow:hidden;
+}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px;
+}
+.back-btn{
+  background:#2563eb;
+  color:white;
+  border:none;
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:18px;
+}
+.title h1{
+  font-size:1.2rem;
+  font-weight:600;
+}
+
+.intro{
+  padding:0 20px 10px;
+  color:#334155;
+}
+
+.meta{
+  display:flex;
+  gap:8px;
+  padding:0 20px 10px;
+}
+.chip{
+  background:#e0f2fe;
+  padding:6px 10px;
+  border-radius:10px;
+  font-size:12px;
+}
+
+/* ===== CONTENT ===== */
+.content{
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.qbox{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  padding:20px;
+  border-radius:20px;
+}
+
+.qheader{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.badge{
+  background:linear-gradient(135deg,#38bdf8,#6366f1);
+  color:white;
+  width:32px;
+  height:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  font-weight:600;
+}
+
+.qtitle{font-weight:600;}
+
+.qdesc{
+  margin-bottom:12px;
+  color:#334155;
+}
+
+/* ===== OPTIONS ===== */
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.opt{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px;
+  border-radius:16px;
+  background:white;
+  border:1px solid #e2e8f0;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.opt:hover{
+  background:#e0f2fe;
+  border-color:#38bdf8;
+}
+
+/* ===== RESULT ===== */
+.result{
+  margin-top:10px;
+  font-weight:600;
+}
+
+.explain{
+  margin-top:10px;
+  font-size:14px;
+  color:#334155;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  margin-top:10px;
+  width:100%;
+  font-weight:600;
+}
+
+.btn-primary{background:#2563eb;color:white;}
+.btn-secondary{background:#6366f1;color:white;}
+html {
+  font-size: 18px; /* default biasanya 16px */
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+<div class="card">
+
+<div class="topbar">
+  <button class="back-btn" onclick="history.back()">←</button>
+  <div class="title">
+    <h1>Kuis – SARA</h1>
+  </div>
+</div>
+
+<div class="intro">
+  Pilih jawaban yang paling tepat untuk menyelesaikan kuis ini.
+</div>
+
+<div class="content" id="quiz"></div>
+
+<div style="padding:20px">
+  <button class="btn btn-primary" onclick="checkAnswers()">Cek Jawaban</button>
+  <button class="btn btn-secondary" onclick="resetQuiz()">Reset</button>
+  <div class="result" id="score"></div>
+</div>
+
+</div>
+</div>
+
+<script>
+const quizData = [
+
+{
+type:"radio",
+title:"Pilihan Ganda (SARA)",
+q:"Apa yang dimaksud dengan SARA?",
+options:[
+"Sistem aplikasi media sosial",
+"Suku, Agama, Ras, dan Antargolongan",
+"Sarana akses ruang internet",
+"Singkatan keamanan digital"
+],
+answer:1,
+explain:"SARA adalah singkatan dari Suku, Agama, Ras, dan Antargolongan."
+},
+
+{
+type:"truefalse",
+title:"Benar / Salah",
+q:"Menghina kelompok tertentu karena suku atau agama termasuk tindakan SARA.",
+answer:true,
+explain:"Perilaku tersebut termasuk SARA dan bisa memicu konflik."
+},
+
+{
+type:"radio",
+title:"Etika Digital",
+q:"Apa yang sebaiknya dilakukan saat melihat konten bermuatan SARA di media sosial?",
+options:[
+"Ikut menyebarkan",
+"Membalas dengan hinaan",
+"Melaporkan dan tidak ikut menyebarkan",
+"Menambahkan komentar provokatif"
+],
+answer:2,
+explain:"Konten SARA sebaiknya dilaporkan."
+},
+
+{
+type:"radio",
+title:"Tebak Gambar",
+q:"Masalah utama pada postingan yang menghina kelompok tertentu adalah...",
+options:[
+"Konten edukasi",
+"Mengandung unsur SARA",
+"Menggunakan banyak emoji",
+"Promosi media sosial"
+],
+answer:1,
+explain:"Konten tersebut termasuk SARA."
+},
+
+{
+type:"text",
+title:"Isian",
+q:"Menghormati perbedaan dapat mencegah terjadinya ____ sosial.",
+answer:"konflik",
+explain:"Sikap menghormati mencegah konflik."
+},
+
+{
+type:"radio",
+title:"Ujaran Kebencian",
+q:"Konten yang menyerang identitas suku atau agama seseorang disebut...",
+options:[
+"Edukasi digital",
+"Ujaran kebencian",
+"Konten hiburan",
+"Informasi ilmiah"
+],
+answer:1,
+explain:"Ini termasuk ujaran kebencian."
+},
+
+{
+type:"radio",
+title:"Studi Kasus",
+q:"Akun membuat meme menghina agama tertentu. Apa tindakan paling tepat?",
+options:[
+"Ikut membagikan",
+"Memberi komentar kasar",
+"Melaporkan konten tersebut",
+"Menjadikannya candaan"
+],
+answer:2,
+explain:"Harus dilaporkan agar tidak menyebar."
+},
+
+{
+type:"radio",
+title:"Toleransi",
+q:"Mengapa kita harus menghormati perbedaan?",
+options:[
+"Agar terjadi persatuan",
+"Agar mudah bertengkar",
+"Agar konflik meningkat",
+"Agar orang takut"
+],
+answer:0,
+explain:"Menghormati perbedaan menjaga persatuan."
+},
+
+{
+type:"checkbox",
+title:"Pilih 2 Jawaban",
+q:"Pilih 2 sikap bijak menghadapi konten SARA!",
+options:[
+"Menggunakan bahasa santun",
+"Ikut menyebarkan hinaan",
+"Menghormati perbedaan",
+"Membuat komentar provokatif"
+],
+answer:[0,2],
+explain:"Sikap santun dan menghormati penting."
+},
+
+{
+type:"match",
+title:"Menjodohkan",
+q:"Pasangkan istilah berikut",
+pairs:[
+["SARA","Suku, Agama, Ras, dan Antargolongan"],
+["Toleransi","Menghormati perbedaan"],
+["Ujaran kebencian","Serangan terhadap kelompok tertentu"]
+],
+explain:"Memahami istilah penting dalam literasi digital."
+},
+
+{
+type:"text",
+title:"Tebak Istilah",
+q:"Sikap menghormati perbedaan antar kelompok disebut...",
+answer:"toleransi",
+explain:"Toleransi menjaga kerukunan."
+},
+
+{
+type:"ordering",
+title:"Urutan Langkah",
+q:"Urutkan langkah bijak saat menemukan konten SARA",
+options:[
+"Tidak ikut menyebarkan",
+"Memeriksa isi konten",
+"Melaporkan konten",
+"Tetap tenang"
+],
+answer:[1,3,0,2],
+explain:"Langkah yang benar adalah cek → tenang → tidak sebar → lapor."
+},
+
+{
+type:"radio",
+title:"Dampak SARA",
+q:"Apa dampak terbesar menghina kelompok tertentu?",
+options:[
+"Persatuan meningkat",
+"Konflik dan diskriminasi bertambah",
+"Semua orang aman",
+"Hubungan membaik"
+],
+answer:1,
+explain:"Dapat memicu konflik sosial."
+},
+
+{
+type:"truefalse",
+title:"Benar / Salah",
+q:"Candaan yang menghina suku atau agama tetap termasuk SARA.",
+answer:true,
+explain:"Walau bercanda tetap bisa melukai."
+},
+
+{
+type:"checkbox",
+title:"Pilih 2 Jawaban",
+q:"Pilih 2 tindakan yang mencegah konflik SARA!",
+options:[
+"Menghormati perbedaan",
+"Menyebarkan ujaran kebencian",
+"Menggunakan bahasa santun",
+"Membalas hinaan"
+],
+answer:[0,2],
+explain:"Menghormati dan santun adalah kunci."
+}
+
+];
+const quizContainer = document.getElementById("quiz");
+
+quizData.forEach((q,i)=>{
+let html = `<div class="qbox">
+
+<div class="qheader">
+  <div class="badge">${i+1}</div>
+  <div class="qtitle">${q.title}</div>
+</div>
+
+<div class="qdesc">${q.q}</div>
+<div class="options">`;
+
+if(q.type==="radio"){
+q.options.forEach((opt,j)=>{
+html+=`<label class="opt">
+<input type="radio" name="q${i}" value="${j}"> ${opt}
+</label>`;
+});
+}
+
+if(q.type==="checkbox"){
+q.options.forEach((opt,j)=>{
+html+=`<label class="opt">
+<input type="checkbox" name="q${i}" value="${j}"> ${opt}
+</label>`;
+});
+}
+
+if(q.type==="text"){
+html+=`<input type="text" id="q${i}" class="opt">`;
+}
+
+if(q.type==="truefalse"){
+html+=`
+<label class="opt"><input type="radio" name="q${i}" value="true"> Benar</label>
+<label class="opt"><input type="radio" name="q${i}" value="false"> Salah</label>
+`;
+}
+
+html+=`</div>
+<div class="explain" id="exp${i}"></div>
+</div>`;
+
+quizContainer.innerHTML+=html;
+});
+
+function checkAnswers(){
+let score=0;
+
+quizData.forEach((q,i)=>{
+let correct=false;
+
+if(q.type==="radio"){
+let val=document.querySelector(`input[name=q${i}]:checked`);
+if(val && parseInt(val.value)===q.answer) correct=true;
+}
+
+if(q.type==="checkbox"){
+let vals=[...document.querySelectorAll(`input[name=q${i}]:checked`)].map(v=>parseInt(v.value));
+if(JSON.stringify(vals.sort())===JSON.stringify(q.answer)) correct=true;
+}
+
+if(q.type==="text"){
+let val=document.getElementById(`q${i}`).value.toLowerCase();
+if(val===q.answer) correct=true;
+}
+
+if(q.type==="truefalse"){
+let val=document.querySelector(`input[name=q${i}]:checked`);
+if(val && (val.value==="true")===q.answer) correct=true;
+}
+
+if(correct) score++;
+
+document.getElementById(`exp${i}`).innerHTML =
+(correct?"✅ Benar<br>":"❌ Salah<br>")+q.explain;
+});
+
+document.getElementById("score").innerHTML="Skor: "+score+"/"+quizData.length;
+}
+
+function resetQuiz(){
+location.reload();
+}
+</script>
+
+</body>
+</html>

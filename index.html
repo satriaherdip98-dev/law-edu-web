@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+  <!-- META -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- TITLE -->
+  <title>LAW EDU WEB</title>
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ICON -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+
+    /* RESET */
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+  /* BODY */
+body{
+
+  margin: 0;
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  overflow-x: hidden;
+
+  background:
+  linear-gradient(
+    to bottom,
+    #e0f2fe,  /* Biru muda 1 */
+    #f0f9ff,  /* Biru muda 2 */
+    #f8fafc   /* Putih kebiruan */
+  );
+
+  background-attachment: fixed;
+
+  position: relative;
+}
+
+    /* MAIN CONTAINER */
+    .container{
+
+      position: relative;
+      z-index: 10;
+
+      width: 100%;
+      max-width: 430px;
+
+      padding: 35px 25px;
+
+      border-radius: 30px;
+
+      background: linear-gradient(160deg, #1e3a8a, #2563eb, #3b82f6) !important;
+  backdrop-filter: blur(20px);
+  border: none !important;
+  box-shadow:
+    0 20px 40px rgba(59,130,246,0.15),  /* Shadow biru muda */
+    0 0 0 1px rgba(255,255,255,0.8);
+
+      text-align: center;
+
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn{
+
+      from{
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    /* SPLASH PAGE */
+    #welcomePage{
+      display: block;
+    }
+
+/* LOGIN PAGE */
+    #loginPage{
+      display: none;
+      background: linear-gradient(160deg, #1e3a8a, #2563eb, #3b82f6) !important;
+  border: none !important;
+    }
+
+    /* BACK BUTTON */
+    .back-btn{
+
+      width: 100%;
+
+      margin-bottom: 18px;
+
+      padding: 12px 15px;
+
+      border: 1px solid rgba(255,255,255,0.15);
+
+      border-radius: 15px;
+
+      background: linear-gradient(160deg, #2563eb, #3b82f6) !important;
+
+      color: #e2e8f0;
+
+      cursor: pointer;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 10px;
+
+      transition: 0.3s;
+
+    }
+
+    .back-btn:hover{
+
+      transform: translateY(-2px);
+
+      background: rgba(255,255,255,0.14);
+
+    }
+
+
+    /* LOGO */
+    .logo{
+
+      width: clamp(120px, 30vw, 180px);
+
+      height: auto;
+
+      margin-bottom: 20px;
+
+      animation:
+      floating 3s ease-in-out infinite;
+
+      filter:
+      drop-shadow(0 10px 20px rgba(0,0,0,0.35));
+    }
+
+    @keyframes floating{
+
+      0%{
+        transform: translateY(0px);
+      }
+
+      50%{
+        transform: translateY(-10px);
+      }
+
+      100%{
+        transform: translateY(0px);
+      }
+
+    }
+
+    /* TITLE */
+    h1{
+
+      color: white;
+
+      font-size:
+      clamp(2rem, 5vw, 3rem);
+
+      margin-bottom: 12px;
+    }
+
+    /* SUBTITLE */
+    .theme{
+
+      color: #dbeafe;
+
+      font-size: 1rem;
+
+      margin-bottom: 20px;
+
+      font-weight: 500;
+    }
+
+    /* TAGLINE */
+    .tagline{
+
+      color: #e2e8f0;
+
+      line-height: 1.8;
+
+      margin-bottom: 35px;
+    }
+
+    /* BUTTON */
+    .start-btn{
+
+      width: 100%;
+
+      padding: 15px;
+
+      border: none;
+
+      border-radius: 18px;
+
+      font-size: 1rem;
+
+      font-weight: 600;
+
+      color: white;
+
+      cursor: pointer;
+
+      background:
+      linear-gradient(
+        135deg,
+        #38bdf8,
+        #6366f1
+      );
+
+      transition: 0.3s;
+
+      box-shadow:
+      0 10px 25px rgba(99,102,241,0.35);
+    }
+
+    .start-btn:hover{
+
+      transform:
+      translateY(-3px)
+      scale(1.02);
+    }
+
+    /* LOGIN TITLE */
+    .login-title{
+
+      color: white;
+
+      font-size: 1.8rem;
+
+      margin-bottom: 10px;
+    }
+
+    .login-text{
+
+      color: #dbeafe;
+
+      margin-bottom: 30px;
+
+      line-height: 1.7;
+    }
+
+    /* FORM */
+    .input-group{
+
+      margin-bottom: 20px;
+
+      text-align: left;
+    }
+
+    .input-group label{
+
+      color: white;
+
+      display: block;
+
+      margin-bottom: 8px;
+
+      font-size: 0.95rem;
+    }
+
+    .input-box{
+
+      width: 100%;
+
+      padding: 15px;
+
+      border-radius: 15px;
+
+      border: 1px solid rgba(255,255,255,0.15);
+
+      background: rgba(255,255,255,0.14);
+
+      color: white;
+
+      outline: none;
+
+      font-size: 0.95rem;
+    }
+
+    .input-box::placeholder{
+      color: #cbd5e1;
+    }
+
+    /* PASSWORD BOX */
+    .password-container{
+
+      position: relative;
+    }
+
+    .eye-btn{
+
+      position: absolute;
+
+      right: 15px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: #e2e8f0;
+
+      cursor: pointer;
+    }
+
+    /* LOGIN BUTTON */
+    .submit-btn{
+
+      width: 100%;
+
+      padding: 15px;
+
+      border: none;
+
+      border-radius: 15px;
+
+      margin-top: 10px;
+
+      background:
+      linear-gradient(
+        135deg,
+        #38bdf8,
+        #6366f1
+      );
+
+      color: white;
+
+      font-size: 1rem;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover{
+
+      transform:
+      translateY(-3px)
+      scale(1.02);
+    }
+
+    /* GOOGLE BUTTON */
+    .google-btn{
+
+      width: 100%;
+
+      padding: 14px;
+
+      margin-top: 18px;
+
+      border-radius: 15px;
+
+      border: none;
+
+      background: white;
+
+      color: #1e293b;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      transition: 0.3s;
+    }
+
+    .google-btn:hover{
+
+      transform:
+      translateY(-2px);
+    }
+
+    .google-btn img{
+      width: 22px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 480px){
+
+      .container{
+        padding: 30px 20px;
+      }
+
+    }
+
+/* TOP HEADER */
+.top-header{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.welcome-text h2{
+
+  color: white;
+
+  font-size: 1.8rem;
+
+  margin-bottom: 5px;
+}
+
+.welcome-text p{
+
+  color: #cbd5e1;
+
+  font-size: 0.95rem;
+}
+
+/* PROFILE */
+.profile-box img{
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+
+  border: 3px solid rgba(255,255,255,0.2);
+}
+
+/* PROGRESS */
+.progress-card{
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(16px);
+
+  border-radius: 25px;
+
+  padding: 25px;
+
+  margin-bottom: 25px;
+
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.progress-top{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.progress-top h3,
+.progress-top span{
+
+  color: white;
+}
+
+.progress-bar{
+
+  width: 100%;
+  height: 12px;
+
+  background: rgba(255,255,255,0.1);
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  margin-bottom: 12px;
+}
+
+.progress-fill{
+
+  width: 75%;
+  height: 100%;
+
+  background:
+  linear-gradient(
+    90deg,
+    #38bdf8,
+    #6366f1
+  );
+
+  border-radius: 20px;
+}
+
+.progress-info{
+
+  color: #cbd5e1;
+
+  font-size: 0.9rem;
+}
+
+/* MENU GRID */
+.menu-grid{
+
+  display: grid;
+
+  grid-template-columns:
+  repeat(auto-fit, minmax(160px,1fr));
+
+  gap: 18px;
+
+  margin-bottom: 30px;
+}
+
+/* MENU CARD */
+.menu-card{
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(16px);
+
+  border-radius: 25px;
+
+  padding: 25px 20px;
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  transition: 0.3s;
+
+  cursor: pointer;
+}
+
+.menu-card:hover{
+
+  transform: translateY(-5px);
+}
+
+.menu-icon{
+
+  font-size: 2rem;
+
+  margin-bottom: 15px;
+}
+
+.menu-card h4{
+
+  color: white;
+
+  margin-bottom: 10px;
+}
+
+.menu-card p{
+
+  color: #cbd5e1;
+
+  font-size: 0.9rem;
+
+  line-height: 1.6;
+}
+
+/* SECTION TITLE */
+.section-title{
+
+  margin-bottom: 20px;
+}
+
+.section-title h3{
+
+  color: white;
+}
+
+/* MATERI */
+.materi-container{
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.materi-card{
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(16px);
+
+  border-radius: 25px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.materi-image{
+
+  height: 160px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #38bdf8,
+    #6366f1
+  );
+}
+
+.materi-image.second{
+
+  background:
+  linear-gradient(
+    135deg,
+    #ec4899,
+    #8b5cf6
+  );
+}
+
+.materi-content{
+
+  padding: 20px;
+}
+
+.materi-content h4{
+
+  color: white;
+
+  margin-bottom: 10px;
+}
+
+.materi-content p{
+
+  color: #cbd5e1;
+
+  line-height: 1.6;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+
+  position: fixed;
+
+  bottom: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 92%;
+  max-width: 500px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 15px 10px;
+
+  border-radius: 25px;
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-item{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 5px;
+
+  color: #cbd5e1;
+
+  font-size: 0.8rem;
+
+  cursor: pointer;
+}
+
+.nav-item.active{
+
+  color: white;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+  .welcome-text h2{
+
+    font-size: 1.5rem;
+  }
+
+  .menu-grid{
+
+    grid-template-columns: 1fr 1fr;
+  }
+}
+#welcomePage h1 {
+  color: #ffffff !important;
+}
+
+#welcomePage .theme {
+  color: #bfdbfe !important;
+}
+
+#welcomePage .tagline {
+  color: #e0f2fe !important;
+}
+/* RESPONSIVE LAYOUT TAMBAHAN */
+
+/* Tablet */
+@media (min-width: 768px){
+  .container{
+    max-width: 700px;
+    padding: 40px;
+  }
+
+  .menu-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .materi-container{
+    flex-direction: row;
+  }
+
+  .materi-card{
+    flex: 1;
+  }
+}
+
+/* Laptop */
+@media (min-width: 1024px){
+  .container{
+    max-width: 900px;
+  }
+
+  .menu-grid{
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .top-header{
+    margin-bottom: 40px;
+  }
+}
+
+/* Desktop besar */
+@media (min-width: 1280px){
+  .container{
+    max-width: 1100px;
+  }
+}
+
+/* Font fleksibel */
+body{
+  font-size: clamp(14px, 1.5vw, 16px);
+}
+
+h1{
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h2{
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Bottom nav fix */
+@media (min-width: 768px){
+  .bottom-nav{
+    max-width: 600px;
+    padding: 18px 20px;
+  }
+}
+
+@media (min-width: 1024px){
+  .bottom-nav{
+    position: relative;
+    bottom: auto;
+    transform: none;
+    margin: 30px auto 0;
+  }
+}
+
+/* Gambar adaptif */
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+.materi-image{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+/* Desktop lebih lega */
+@media (min-width: 1024px){
+  body{
+    align-items: flex-start;
+  }
+}
+/* =========================
+   FIX LAYOUT DESKTOP
+========================= */
+
+@media (min-width: 1024px){
+
+  body{
+    display: block; /* HAPUS center paksa */
+    padding: 40px;
+  }
+
+  .container{
+    max-width: 1200px;   /* FULL LEBAR */
+    margin: auto;        /* CENTER NORMAL */
+    border-radius: 30px;
+  }
+
+  #dashboardPage{
+    width: 100%;
+  }
+
+}
+@media (min-width: 768px){
+  .bottom-nav{
+    max-width: 600px;
+    padding: 18px 20px;
+  }
+}
+
+@media (min-width: 1024px){
+  .bottom-nav{
+    position: relative;
+    bottom: auto;
+    transform: none;
+    margin: 30px auto 0;
+  }
+}
+/* =========================
+   FIX CONTAINER FULL & SIMETRIS
+========================= */
+
+.container{
+  min-height: 90vh; /* biar panjang ke bawah */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* tengah vertikal */
+}
+
+/* khusus welcome & login */
+#welcomePage,
+#loginPage{
+  min-height: 90vh;
+  justify-content: center;
+}
+/* SPASI RAPI */
+.container{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.start-btn{
+  width: auto;              /* tidak full */
+  padding: 14px 30px;       /* lebih proporsional */
+  display: inline-block;    /* ikut ukuran teks */
+  margin: 0 auto;           /* center */
+}
+#loginPage{
+  min-height: 90vh;
+}
+/* SEMUA HALAMAN TERPISAH JELAS */
+#welcomePage,
+#loginPage,
+#dashboardPage{
+  position: relative;
+  z-index: 10;
+}
+
+/* SEMBUNYIKAN YANG TIDAK AKTIF SECARA AMAN */
+#dashboardPage{
+  display: none;
+}
+.container{
+  transition: all 0.3s ease;
+}
+/* =========================
+   FIX BOTTOM NAV
+========================= */
+
+/* default: sembunyikan dulu */
+.bottom-nav{
+  display: none;
+}
+
+/* hanya tampil saat dashboard aktif */
+#dashboardPage.active ~ .bottom-nav{
+  display: flex;
+}
+.bottom-nav{
+  display: none;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+#dashboardPage.active ~ .bottom-nav{
+  display: flex;
+  opacity: 1;
+}
+body{
+  font-size: clamp(14px, 1.5vw, 16px);
+}
+
+h1{
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h2{
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+/* ===== MATERI PAGE ===== */
+
+.materi-header{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.materi-header h2{
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.back-btn.small{
+  width: 45px;
+  height: 45px;
+  padding: 0;
+}
+
+.search-box{
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.12);
+  border-radius: 15px;
+  padding: 5px;
+  margin-bottom: 25px;
+}
+
+.search-box input{
+  flex: 1;
+  padding: 12px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+}
+
+.search-box input::placeholder{
+  color: #e2e8f0;
+}
+
+.search-box button{
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#38bdf8,#6366f1);
+  color: white;
+  cursor: pointer;
+}
+
+.search-box input{
+  width: 100%;
+  padding: 14px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+
+.materi-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.materi-item{
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 18px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  min-height: 140px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.materi-item:hover{
+  transform: translateY(-5px);
+}
+
+.materi-item span{
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.materi-item h4{
+  color: white;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.materi-item p{
+  color: #cbd5e1;
+  font-size: 0.8rem;
+}
+@media(max-width: 768px){
+  .materi-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 480px){
+  .materi-grid{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.materi-item span{
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- WELCOME PAGE -->
+  <div class="container" id="welcomePage">
+
+    <!-- LOGO -->
+    <img
+      src="./assets/logo.png"
+      alt="Logo LAW EDU WEB"
+      class="logo"
+    >
+
+    <!-- TITLE -->
+    <h1>LAW EDU WEB</h1>
+
+    <!-- THEME -->
+    <p class="theme">
+      Bijak Bermedia Sosial
+    </p>
+
+    <!-- TAGLINE -->
+    <p class="tagline">
+      "Gunakan Media Sosial Untuk Berkarya,
+      Bukan Sekadar Bergaya"
+    </p>
+
+    <!-- BUTTON -->
+    <button class="start-btn" onclick="showLogin()">
+      Mulai
+    </button>
+
+  </div>
+
+    <!-- LOGIN PAGE -->
+  <div class="container" id="loginPage">
+
+    <!-- BACK BUTTON -->
+    <button class="back-btn" onclick="goBack()" aria-label="Kembali">
+      <i class="fa-solid fa-arrow-left"></i>
+      Kembali
+    </button>
+
+
+    <!-- SMALL LOGO -->
+    <img
+      src="./assets/logo.png"
+      alt="Logo"
+      class="logo"
+      style="width:120px;"
+    >
+
+    <!-- TITLE -->
+    <h2 class="login-title">
+      Bijak Bermedia Sosial
+    </h2>
+
+    <!-- TEXT -->
+    <p class="login-text">
+      Masuk untuk melanjutkan pembelajaran digital
+    </p>
+
+    <!-- USERNAME -->
+    <div class="input-group">
+
+      <label>Username</label>
+
+      <input
+  type="text"
+  id="username"
+  placeholder="Masukkan username"
+  class="input-box"
+>
+
+    </div>
+
+    <!-- EMAIL -->
+    <div class="input-group">
+
+      <label>Email</label>
+
+      <input
+  type="email"
+  id="email"
+  placeholder="Masukkan email"
+  class="input-box"
+>
+
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="input-group">
+
+      <label>Password</label>
+
+      <div class="password-container">
+
+        <input
+  type="password"
+  id="password"
+  placeholder="Masukkan password"
+  class="input-box"
+>
+
+        
+
+      </div>
+
+    </div>
+
+    <!-- LOGIN BUTTON -->
+    <button class="submit-btn" onclick="validateLogin()">
+      Masuk
+    </button>
+
+    <!-- GOOGLE LOGIN -->
+    <button class="google-btn" onclick="loginWithGoogle()">
+
+
+      <img
+      src="https://cdn-icons-png.flaticon.com/512/300/300221.png"
+      alt="Google">
+
+      Masuk dengan Google
+
+    </button>
+
+  </div>
+<!-- DASHBOARD PAGE -->
+<div class="container" id="dashboardPage" style="display:none;">
+
+  <!-- TOP HEADER -->
+  <div class="top-header">
+    <div class="welcome-text">
+      <h2 id="greetingText">Halo 👋</h2>
+      <p>Selamat datang kembali</p>
+    </div>
+
+    <div class="profile-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-card">
+    <div class="progress-top">
+      <h3>Progress Belajar</h3>
+      <span>75%</span>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+
+    <div class="progress-info">
+      Kamu sudah menyelesaikan 3 dari 4 materi
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <div class="menu-grid">
+
+    <div class="menu-card" onclick="openMateri()">
+      <span class="menu-icon">📖</span>
+      <h4>Materi</h4>
+      <p>Pelajari etika digital</p>
+    </div>
+
+    <div class="menu-card" onclick="openKuisPage()">
+      <span class="menu-icon">💡</span>
+      <h4>Kuis</h4>
+      <p>Uji pemahaman kamu</p>
+    </div>
+
+    <div class="menu-card" onclick="window.location.href='prestasi/prestasi.html''">
+      <span class="menu-icon">🏆</span>
+      <h4>Prestasi</h4>
+      <p>Lihat pencapaian</p>
+    </div>
+
+    <div class="menu-card" onclick="openPengaturanPage()">
+      <span class="menu-icon">⚙️</span>
+      <h4>Pengaturan</h4>
+      <p>Kelola akun</p>
+    </div>
+
+    <div class="menu-card" onclick="openKritikSaranPage()">
+      <span class="menu-icon">📝</span>
+      <h4>Kritik dan Saran</h4>
+      <p>Berikan masukan untuk perbaikan</p>
+    </div>
+
+  </div>
+
+  <!-- MATERI -->
+  <div class="section-title">
+    <h3>Materi Terbaru</h3>
+  </div>
+
+  <div class="materi-container">
+
+    <div class="materi-card">
+      <div class="materi-image">📱</div>
+      <div class="materi-content">
+        <div class="materi-badge">Baru</div>
+        <h4>Etika Bermedia Sosial</h4>
+        <p>Pelajari cara bijak menggunakan media sosial.</p>
+      </div>
+    </div>
+
+    <div class="materi-card">
+      <div class="materi-image second">⚠️</div>
+      <div class="materi-content">
+        <div class="materi-badge">Populer</div>
+        <h4>Bahaya Hoaks</h4>
+        <p>Kenali dan hindari berita palsu di internet.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!-- MATERI PAGE -->
+<div class="container" id="materiPage" style="display:none;">
+
+  <div class="materi-header">
+    <button class="back-btn small" onclick="backToDashboard()">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <h2>Materi</h2>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-box">
+
+    <input
+      type="text"
+      id="searchMateri"
+      placeholder="Cari materi..."
+    >
+
+    <button onclick="filterMateri()">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+
+  </div>
+
+  <!-- GRID -->
+  <div class="materi-grid" id="materiGrid">
+
+    <!-- PRIVASI -->
+    <div class="materi-item"
+    onclick="openTema('privasi-data-pribadi')">
+
+      <span>🛡️</span>
+
+      <h4>Privasi & Data Pribadi</h4>
+
+      <p>
+        Jaga informasi pribadi agar tidak disalahgunakan.
+      </p>
+
+    </div>
+
+    <!-- ETIKA -->
+    <div class="materi-item"
+    onclick="openTema('etika-komentar-chat')">
+
+      <span>💬</span>
+
+      <h4>Etika Komentar & Chat</h4>
+
+      <p>
+        Gunakan bahasa sopan dan tidak menyakiti orang lain.
+      </p>
+
+    </div>
+
+    <!-- HOAKS -->
+    <div class="materi-item"
+    onclick="openTema('hoaks')">
+
+      <span>📣</span>
+
+      <h4>Hoaks</h4>
+
+      <p>
+        Kenali berita palsu sebelum menyebarkannya.
+      </p>
+
+    </div>
+
+    <!-- CYBERBULLYING -->
+    <div class="materi-item"
+    onclick="openTema('cyberbullying')">
+
+      <span>🚨</span>
+
+      <h4>Cyberbullying</h4>
+
+      <p>
+        Hindari perundungan di dunia digital.
+      </p>
+
+    </div>
+
+    <!-- SARA -->
+    <div class="materi-item"
+    onclick="openTema('sara')">
+
+      <span>⚠️</span>
+
+      <h4>SARA</h4>
+
+      <p>
+        Hormati perbedaan suku, agama, ras, dan antar golongan.
+      </p>
+
+    </div>
+
+    <!-- PROVOKATIF -->
+    <div class="materi-item"
+    onclick="openTema('provokatif')">
+
+      <span>🔥</span>
+
+      <h4>Provokatif</h4>
+
+      <p>
+        Hindari konten yang memancing konflik.
+      </p>
+
+    </div>
+
+    <!-- KEKAYAAN INTELEKTUAL -->
+    <div class="materi-item"
+    onclick="openTema('kekayaan-intelektual')">
+
+      <span>©️</span>
+
+      <h4>Kekayaan Intelektual</h4>
+
+      <p>
+        Hargai karya orang lain dan hindari plagiarisme.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- HALAMAN KUIS -->
+<div class="container" id="kuisPage" style="display:none;">
+
+  <div class="materi-header">
+    <button class="back-btn small" onclick="backToDashboard()">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <h2>Kuis</h2>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-box">
+
+    <input
+      type="text"
+      id="searchKuis"
+      placeholder="Cari kuis..."
+    >
+
+    <button onclick="filterKuis()">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+
+  </div>
+
+  <!-- GRID -->
+  <div class="materi-grid" id="kuisGrid">
+
+    <!-- PRIVASI -->
+    <div class="materi-item" onclick="startKuis('privasi-data-pribadi')">
+      <span>🛡️</span>
+      <h4>Privasi</h4>
+      <p>Data pribadi</p>
+    </div>
+
+    <!-- ETIKA -->
+    <div class="materi-item" onclick="startKuis('etika-komentar-chat')">
+      <span>💬</span>
+      <h4>Etika</h4>
+      <p>Komentar & chat</p>
+    </div>
+
+    <!-- HOAKS -->
+    <div class="materi-item" onclick="startKuis('hoaks')">
+      <span>📣</span>
+      <h4>Hoaks</h4>
+      <p>Berita palsu</p>
+    </div>
+
+    <!-- CYBERBULLYING -->
+    <div class="materi-item" onclick="startKuis('cyberbullying')">
+      <span>🚨</span>
+      <h4>Cyberbullying</h4>
+      <p>Perundungan</p>
+    </div>
+
+    <!-- SARA -->
+    <div class="materi-item" onclick="startKuis('sara')">
+      <span>⚠️</span>
+      <h4>SARA</h4>
+      <p>Toleransi</p>
+    </div>
+
+    <!-- PROVOKATIF -->
+    <div class="materi-item" onclick="startKuis('provokatif')">
+      <span>🔥</span>
+      <h4>Provokatif</h4>
+      <p>Konten konflik</p>
+    </div>
+
+    <!-- KEKAYAAN INTELEKTUAL -->
+    <div class="materi-item" onclick="startKuis('kekayaan-intelektual')">
+      <span>©️</span>
+      <h4>Hak Cipta</h4>
+      <p>Plagiarisme</p>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- HALAMAN PENGATURAN -->
+<div class="container" id="pengaturanPage" style="display:none;">
+
+  <button class="back-btn" onclick="backToDashboard()">
+    <i class="fa-solid fa-arrow-left"></i>
+    Kembali
+  </button>
+
+  <h1>Pengaturan</h1>
+
+  <p class="tagline">
+    Halaman pengaturan masih kosong
+  </p>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+
+  <div class="nav-item active">
+    <i class="fa-solid fa-house"></i>
+    <span>Home</span>
+  </div>
+
+  <div class="nav-item">
+    <i class="fa-solid fa-book"></i>
+    <span>Materi</span>
+  </div>
+
+  <div class="nav-item">
+    <i class="fa-solid fa-clipboard-question"></i>
+    <span>Kuis</span>
+  </div>
+
+  <div class="nav-item">
+    <i class="fa-solid fa-user"></i>
+    <span>Akun</span>
+  </div>
+  <button onclick="window.location.href='prestasi.html'">
+  Lihat Prestasi
+</button>
+  Lihat Prestasi
+</button>
+
+</div>
+    <!-- JAVASCRIPT -->
+  <script>
+
+    function showLogin(){
+  document.getElementById("welcomePage").style.display = "none";
+  document.getElementById("loginPage").style.display = "block";
+  document.getElementById("dashboardPage").style.display = "none";
+
+  document.getElementById("dashboardPage").classList.remove("active");
+}
+
+    function goBack(){
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("welcomePage").style.display = "block";
+
+  document.getElementById("dashboardPage").classList.remove("active");
+}
+
+    function togglePassword(){
+      const pwd = document.getElementById("password");
+      const icon = document.getElementById("eyeIcon");
+      if(pwd.type === "password"){
+        pwd.type = "text";
+        icon.classList.replace("fa-eye","fa-eye-slash");
+      } else {
+        pwd.type = "password";
+        icon.classList.replace("fa-eye-slash","fa-eye");
+      }
+    }
+
+    function masukDashboard(username, foto){
+  localStorage.setItem("username", username);
+
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("welcomePage").style.display = "none";
+  document.getElementById("dashboardPage").style.display = "block";
+  localStorage.setItem("lastPage", "dashboard");
+
+  document.getElementById("dashboardPage").classList.add("active");
+
+  const hour = new Date().getHours();
+  const greeting = hour<12 ? "Selamat Pagi" : hour<18 ? "Selamat Siang" : "Selamat Malam";
+
+  document.getElementById("greetingText").innerHTML = `${greeting}, ${username} 👋`;
+  document.querySelector(".profile-box img").src = foto;
+  
+}
+
+    function validateLogin(){
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if(username===""||email===""||password===""){
+        alert("Semua data wajib diisi!");
+        return;
+      }
+
+      fetch("https://script.google.com/macros/s/AKfycbyoOrU0Y8EiaokiOaCH7At-N8yQBMKtrudC6rUR1NBq9yXhIBbiLoQec3AHdkFDeyHncQ/exec",{
+        method: "POST",
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          loginTime: new Date().toLocaleString(),
+          device: navigator.platform,
+          metode: "Manual"
+        })
+      })
+      .then(()=> masukDashboard(username, "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"))
+      .catch(()=> alert("Terjadi kesalahan!"));
+    }
+
+
+function openTema(kode){
+
+  // simpan halaman terakhir
+  sessionStorage.setItem("lastPage", "materi");
+
+  const map = {
+    "privasi-data-pribadi": "./materi/tema/privasi-data-pribadi.html",
+    "etika-komentar-chat": "./materi/tema/etika-komentar-chat.html",
+    "hoaks": "./materi/tema/hoaks.html",
+    "cyberbullying": "./materi/tema/cyberbullying.html",
+    "sara": "./materi/tema/sara.html",
+    "provokatif": "./materi/tema/provokatif.html",
+    "kekayaan-intelektual": "./materi/tema/kekayaan-intelektual.html"
+  };
+
+  const url = map[kode];
+
+  if(!url) return;
+
+  window.location.href = url;
+}
+
+function filterMateri(){
+  const input = document.getElementById("searchMateri").value.toLowerCase();
+  const items = document.querySelectorAll(".materi-item");
+
+  items.forEach(item => {
+    const text = item.innerText.toLowerCase();
+    item.style.display = text.includes(input) ? "block" : "none";
+  });
+}
+
+function filterKuis(){
+  const input = document.getElementById("searchKuis").value.toLowerCase();
+  const items = document.querySelectorAll("#kuisGrid .materi-item");
+
+  items.forEach(item => {
+    const text = item.innerText.toLowerCase();
+    item.style.display = text.includes(input) ? "block" : "none";
+  });
+}
+/* =========================
+   SEMBUNYIKAN SEMUA HALAMAN
+========================= */
+function hideAllPages(){
+
+  document.getElementById("welcomePage").style.display = "none";
+
+  document.getElementById("loginPage").style.display = "none";
+
+  document.getElementById("dashboardPage").style.display = "none";
+
+  document.getElementById("materiPage").style.display = "none";
+
+  document.getElementById("kuisPage").style.display = "none";
+
+  document.getElementById("pengaturanPage").style.display = "none";
+}
+
+/* =========================
+   BUKA HALAMAN MATERI
+========================= */
+function openMateri(){
+
+  hideAllPages();
+
+  document.getElementById("materiPage").style.display = "block";
+}
+
+/* =========================
+   KEMBALI KE DASHBOARD
+========================= */
+function backToDashboard(){
+
+  hideAllPages();
+
+  document.getElementById("dashboardPage").style.display = "block";
+}
+
+/* =========================
+   KEMBALI KE MATERI
+========================= */
+function backToMateri(){
+
+  hideAllPages();
+
+  document.getElementById("materiPage").style.display = "block";
+}
+
+/* =========================
+   HALAMAN KUIS
+========================= */
+function openKuisPage(){
+
+  hideAllPages();
+
+  document.getElementById("kuisPage").style.display = "block";
+
+  // reset filter jika pernah dipakai
+  const search = document.getElementById("searchKuis");
+  if(search){
+    search.value = "";
+  }
+  const items = document.querySelectorAll("#kuisGrid .materi-item");
+  items.forEach(item => item.style.display = "block");
+}
+
+/* =========================
+   MULAI KUIS (BUKA HALAMAN DETAIL)
+========================= */
+function startKuis(kode){
+
+  // simpan halaman terakhir
+  sessionStorage.setItem("lastPage", "kuis");
+
+  const map = {
+    "privasi-data-pribadi": "./kuis/tema/privasi-data-pribadi.html",
+    "etika-komentar-chat": "./kuis/tema/etika-komentar-chat.html",
+    "hoaks": "./kuis/tema/hoaks.html",
+    "cyberbullying": "./kuis/tema/cyberbullying.html",
+    "sara": "./kuis/tema/sara.html",
+    "provokatif": "./kuis/tema/provokatif.html",
+    "kekayaan-intelektual": "./kuis/tema/kekayaan-intelektual.html"
+  };
+
+  const url = map[kode];
+  if(!url){
+    alert("Halaman kuis belum tersedia untuk: " + kode);
+    return;
+  }
+
+  window.location.href = url;
+}
+
+
+/* =========================
+   HALAMAN PENGATURAN
+========================= */
+function openPengaturanPage(){
+
+  hideAllPages();
+
+  document.getElementById("pengaturanPage").style.display = "block";
+}
+
+/* =========================
+   HALAMAN KRITIK DAN SARAN
+========================= */
+function openKritikSaranPage(){
+  window.location.href = "./kritik-dan-saran/kritik-dan-saran.html";
+}
+  </script>
+
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCC3KzdCw-MMrAlxM4H0wGl3UoSZyrL2OM",
+      authDomain: "law-edu-web.firebaseapp.com",
+      projectId: "law-edu-web",
+      storageBucket: "law-edu-web.firebasestorage.app",
+      messagingSenderId: "850688623558",
+      appId: "1:850688623558:web:72eec3fed1f57e8152a8c7"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    window.loginWithGoogle = function(){
+      signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+
+        // Kirim data ke Google Sheets
+        fetch("https://script.google.com/macros/s/AKfycbyoOrU0Y8EiaokiOaCH7At-N8yQBMKtrudC6rUR1NBq9yXhIBbiLoQec3AHdkFDeyHncQ/exec",{
+          method: "POST",
+          body: JSON.stringify({
+            username: user.displayName,
+            email: user.email,
+            loginTime: new Date().toLocaleString(),
+            device: navigator.platform,
+            metode: "Google Login"
+          })
+        });
+
+        // Masuk ke dashboard dengan nama & foto Google
+        masukDashboard(user.displayName, user.photoURL);
+      })
+      .catch((error)=>{
+        alert("Login Google gagal: " + error.message);
+      });
+    }
+
+  </script>
+<script>
+
+window.addEventListener("load", () => {
+
+  if(window.location.hash === "#materi"){
+
+    hideAllPages();
+
+    document.getElementById("materiPage").style.display = "block";
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>

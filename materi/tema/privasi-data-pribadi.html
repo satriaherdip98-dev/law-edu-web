@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Materi - Privasi & Data Pribadi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body{background:linear-gradient(to bottom,#e0f2fe,#f0f9ff,#f8fafc);min-height:100vh;padding:20px;}
+    .wrap{max-width:1100px;margin:0 auto;}
+    .card{
+  background:white;backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.12);border-radius:24px;box-shadow:0 20px 40px rgba(59,130,246,0.10);overflow:hidden;}
+    .header{display:flex;align-items:center;gap:14px;padding:20px 20px 10px;}
+    .back-btn{width:48px;height:48px;border-radius:16px;border:1px solid rgba(255,255,255,0.18);background:linear-gradient(160deg,#2563eb,#3b82f6);color:#e2e8f0;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .title{
+  color:#0f172a;
+  font-weight:700;
+  letter-spacing:0.5px;
+}
+    .video-placeholder{
+  margin:0 auto 18px auto;   /* ✅ center horizontal */
+  width:calc(100% - 40px);   /* ✅ kasih jarak kiri kanan */
+
+  border-radius:18px;
+  background:linear-gradient(135deg,#38bdf8,#6366f1);
+  aspect-ratio:16/9;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:600;
+}
+.chip{
+  background:#e2e8f0;
+  color:#1e293b;
+  border:1px solid #cbd5e1;
+  padding:10px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:0.9rem;
+  font-weight:600;
+}
+    .section{padding:0 20px 22px;}
+    .section h3{
+  color:#0f172a;   /* 🔥 warna gelap biar kebaca */
+  margin:18px 0 10px;
+  font-size:1.2rem;
+  font-weight:700;
+}
+    .section p{
+  color:#334155;
+  line-height:1.9;
+  font-size:1rem;
+  font-weight:500;
+}
+
+.section ul{
+  margin-left:18px;
+}
+
+.section li{
+  color:#1e293b;
+  line-height:1.9;
+  font-weight:500;
+}
+    .case-box p{
+  margin:8px 0;
+}
+
+.case-title{
+  color:#0f172a;
+  font-weight:700;
+  margin-bottom:6px;
+}
+    a.link{color:#93c5fd;text-decoration:underline;}
+    a.link:hover{color:#bfdbfe;}
+  .subnav{
+  margin:0 20px;        /* ✅ bikin sejajar dengan video */
+  padding:0 0 10px 0;   /* rapikan bawah */
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.video-container{
+  width:100%;              /* full mengikuti card */
+  background:#000;         /* biar kalau ada space tetap elegan */
+}
+
+.video-container video{
+  width:100%;              /* penting: full lebar */
+  height:auto;             /* jaga rasio video */
+  display:block;
+}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="header">
+        <button class="back-btn" onclick="goBack()" aria-label="Kembali">
+  <i class="fa-solid fa-arrow-left"></i>
+</button>
+
+        <div class="title">Privasi & Data Pribadi</div>
+      </div>
+
+      <div class="video-container">
+  <video controls>
+    <source src="../../assets/video/video-privasi.mp4" type="video/mp4">
+    Browser kamu tidak mendukung video.
+  </video>
+</div>
+
+      <div class="subnav" aria-label="Navigasi subbab">
+        <button class="chip" onclick="scrollToId('pengertian')">Pengertian</button>
+        <button class="chip" onclick="scrollToId('tips')">Yang Harus Diwaspadai & Tips Bijak</button>
+        <button class="chip" onclick="scrollToId('dampak-korban')">Dampak Korban</button>
+        <button class="chip" onclick="scrollToId('dampak-pelaku')">Dampak Pelaku</button>
+        <button class="chip" onclick="scrollToId('undang-undang')">Undang-undang</button>
+        <button class="chip" onclick="scrollToId('contoh-kasus')">Contoh Kasus</button>
+      </div>
+
+      <div class="section">
+        <section id="pengertian">
+          <h3>Pengertian</h3>
+          <p>Data Pribadi adalah data perseorangan tertentu yang disimpan, dirawat, dan dijaga kebenaran serta dilindungi kerahasiaannya.</p>
+        </section>
+
+        <section id="tips">
+          <h3>Yang Harus Diwaspadai dan Tips Bijak Bermedia Sosial</h3>
+          <ul>
+            <li>Jangan mudah percaya informasi yang beredar di media sosial tanpa memverifikasinya terlebih dahulu melalui sumber resmi dan terpercaya.</li>
+            <li>Jangan sembarangan membagikan data pribadi seperti NIK, nomor rekening, atau informasi sensitif lainnya di media sosial.</li>
+            <li>Terapkan prinsip Saring Sebelum Sharing: pastikan informasi berasal dari sumber yang dapat dipertanggungjawabkan.</li>
+            <li>Komentar/unggahan meninggalkan jejak digital dan dapat digunakan sebagai bukti hukum.</li>
+            <li>Lindungi privasi diri dengan menggunakan pengaturan privasi di setiap platform dan hindari oversharing.</li>
+          </ul>
+        </section>
+
+        <section id="dampak-korban">
+          <h3>Dampak terhadap Korban</h3>
+          <ul>
+            <li>Berisiko menjadi korban penipuan dan phising.</li>
+            <li>Rekening bisa menjadi sasaran pembobolan.</li>
+            <li>Identitas disalahgunakan.</li>
+            <li>Berisiko mendapatkan banyak spam.</li>
+          </ul>
+        </section>
+
+        <section id="dampak-pelaku">
+          <h3>Dampak terhadap Pelaku</h3>
+          <p>Pelaku dapat dikenai sanksi pidana/ denda bagi yang dengan sengaja memperoleh atau mengumpulkan data pribadi milik orang lain untuk keuntungan pribadi.</p>
+        </section>
+
+        <section id="undang-undang">
+          <h3>Undang-undang yang Mengatur</h3>
+          <p>UU No. 27 Tahun 2022 tentang Perlindungan Data Pribadi (UU PDP) Pasal 67 ayat (1).</p>
+        </section>
+
+        <section id="contoh-kasus">
+          <h3>Contoh Kasus</h3>
+          <div class="case-box">
+            <div class="case-title">26 Warga Jadi Korban Pencurian Data Pribadi untuk Pinjol</div>
+            <p>Kasus ini terjadi di wilayah Jakarta Timur, di mana sekitar 26 orang menjadi korban penyalahgunaan data pribadi. Jatuhnya banyak korban akibat jerat pinjol, masih banyak aplikasi tetap diizinkan beroperasi dan aplikasi baru muncul.</p>
+            <p>Sumber: Kompas.com, 2024</p>
+            <a href="https://www.kompas.id/artikel/26-jadi-korban-pencurian-data-pribadi-untuk-pinjol?utm_source=chatgpt.com" 
+   target="_blank" 
+   class="link">
+   Klik di sini
+</a>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  </script>
+  <script>
+
+function goBack(){
+
+  const lastPage = sessionStorage.getItem("lastPage");
+
+  if(lastPage === "materi"){
+
+    window.location.href = "../../index.html#materi";
+
+  } else {
+
+    window.location.href = "../../index.html";
+
+  }
+
+}
+
+</script>
+</body>
+</html>
+

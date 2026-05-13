@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis - Privasi & Data Pribadi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body{background:linear-gradient(to bottom,#e0f2fe,#f0f9ff,#f8fafc);min-height:100vh;padding:20px;}
+    .wrap{max-width:900px;margin:0 auto;}
+
+    .card{
+      background:rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      border:1px solid rgba(255,255,255,0.6);
+      border-radius:24px;
+      box-shadow:0 20px 40px rgba(59,130,246,0.10);
+      overflow:hidden;
+    }
+
+    .topbar{display:flex;align-items:center;gap:14px;padding:18px 18px 12px;}
+    .back-btn{
+      width:48px;height:48px;border-radius:16px;border:1px solid rgba(37,99,235,0.22);
+      background:linear-gradient(160deg,#2563eb,#3b82f6);color:white;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+    }
+
+    .title{font-size:1.2rem;font-weight:800;color:#0f172a;letter-spacing:0.3px;}
+
+    .intro{padding:0 18px 18px;}
+    .intro p{color:#334155;line-height:1.9;font-weight:500;margin-top:8px;}
+
+    .meta{
+      display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;
+    }
+    .chip{
+      background:#e2e8f0;color:#0f172a;border:1px solid rgba(148,163,184,0.65);
+      border-radius:999px;padding:8px 10px;font-size:0.85rem;font-weight:700;
+    }
+
+    .content{padding:0 18px 18px;}
+
+    .qbox{
+      border-radius:18px;
+      background:rgba(255,255,255,0.9);
+      border:1px solid rgba(148,163,184,0.35);
+      padding:14px;
+      margin:12px 0;
+    }
+    .qtitle{font-weight:800;color:#0f172a;display:flex;gap:10px;align-items:center;margin-bottom:8px;}
+    .qtitle .badge{background:linear-gradient(135deg,#38bdf8,#6366f1);color:white;border-radius:12px;padding:6px 10px;font-size:0.9rem;}
+
+    .qdesc{color:#334155;line-height:1.8;font-weight:500;margin-bottom:10px;}
+
+    .options{display:flex;flex-direction:column;gap:8px;}
+    .opt{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:14px;border:1px solid rgba(148,163,184,0.35);background:rgba(255,255,255,0.95);cursor:pointer;}
+    .opt input{margin-top:3px;}
+    .opt span{color:#0f172a;font-weight:700;line-height:1.5;}
+
+    textarea{width:100%;min-height:90px;border-radius:16px;padding:12px;border:1px solid rgba(148,163,184,0.35);background:rgba(255,255,255,0.95);outline:none;resize:vertical;}
+
+    .btnbar{display:flex;gap:12px;flex-wrap:wrap;padding:0 18px 18px;}
+    .btn{
+      border:none;cursor:pointer;border-radius:16px;padding:12px 16px;font-weight:800;
+      transition:0.2s;display:flex;align-items:center;gap:10px;
+    }
+    .btn-primary{background:linear-gradient(135deg,#38bdf8,#6366f1);color:white;}
+    .btn-secondary{background:rgba(37,99,235,0.10);border:1px solid rgba(37,99,235,0.25);color:#1d4ed8;}
+
+    .result{
+      margin:0 18px 18px; padding:14px; border-radius:18px;
+      border:1px dashed rgba(37,99,235,0.35); color:#0f172a; display:none;
+      background:rgba(255,255,255,0.92);
+    }
+    .result b{color:#2563eb;}
+
+    .explain{margin-top:10px;color:#334155;line-height:1.7;font-weight:600;display:none;}
+    .hint{font-size:0.95rem;color:#475569;line-height:1.7;font-weight:600;}
+
+    /* Layout responsif */
+    @media (max-width: 600px){
+      body{padding:12px;}
+      .wrap{max-width:100%;}
+      .topbar{padding:14px 14px 10px;}
+      .content{padding:0 14px 14px;}
+      .intro{padding:0 14px 14px;}
+      .btnbar{padding:0 14px 14px;}
+      .result{margin:0 14px 14px;}
+    }
+
+    /* Pastikan opsi checkbox & radio tampil rapi */
+    .multi{flex-direction:column;}
+
+    /* Preview gambar (placeholder) */
+    .imgbox{
+      width:100%;
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,0.35);
+      background:linear-gradient(135deg, rgba(56,189,248,0.20), rgba(99,102,241,0.20));
+      display:flex;align-items:center;justify-content:center;
+      padding:18px;
+      color:#0f172a;
+      font-weight:900;
+      text-align:center;
+      line-height:1.5;
+      margin-bottom:10px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="topbar">
+        <button class="back-btn" onclick="goBackToMenu()">
+  <i class="fa-solid fa-arrow-left"></i>
+</button>
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="title">Kuis - Privasi & Data Pribadi</div>
+      </div>
+
+      <div class="intro">
+        <p style="margin-top:10px;">
+          Pilih jawaban yang paling tepat untuk menyelesaikan kuis ini.
+        </p>
+      </div>
+
+      <div class="content">
+
+        <!-- 1) PILIHAN GANDA -->
+        <div class="qbox" data-q="1">
+          <div class="qtitle"><span class="badge">1</span> Pilihan Ganda (Pengertian)</div>
+          <div class="qdesc">
+            “Data Pribadi” adalah…
+          </div>
+          <div class="options">
+            <label class="opt"><input type="radio" name="q1" value="a" /> <span>Data perseorangan tertentu yang disimpan, dirawat, dan dijaga kebenaran serta dilindungi kerahasiaannya.</span></label>
+            <label class="opt"><input type="radio" name="q1" value="b" /> <span>Semua informasi yang beredar di media sosial tanpa perlu perlindungan.</span></label>
+            <label class="opt"><input type="radio" name="q1" value="c" /> <span>Hanya data keuangan yang boleh dibagikan ke publik.</span></label>
+            <label class="opt"><input type="radio" name="q1" value="d" /> <span>Data yang tidak ada hubungannya dengan hukum dan privasi.</span></label>
+          </div>
+          <div class="explain" data-ex="q1">
+            <b>Pembahasan:</b> Data Pribadi pada materi didefinisikan sebagai data perseorangan tertentu yang disimpan, dirawat, dan dijaga kebenarannya serta dilindungi kerahasiaannya.
+          </div>
+        </div>
+
+        <!-- 2) PILIHAN GANDA (UNDANG-UNDANG WAJIB) -->
+        <div class="qbox" data-q="2">
+          <div class="qtitle"><span class="badge">2</span> Pilihan Ganda (Undang-Undang)</div>
+          <div class="qdesc">
+            Undang-undang tentang Perlindungan Data Pribadi adalah… dan Pasal berapa yang ada di materi?
+          </div>
+          <div class="options">
+            <label class="opt"><input type="radio" name="q2" value="a" /> <span>UU No. 27 Tahun 2022 tentang PDP Pasal 67 ayat (1).</span></label>
+            <label class="opt"><input type="radio" name="q2" value="b" /> <span>UU No. 11 Tahun 2008 tentang ITE Pasal 45A ayat (1).</span></label>
+            <label class="opt"><input type="radio" name="q2" value="c" /> <span>UU No. 20 Tahun 2001 tentang Hak Cipta Pasal 28 ayat (2).</span></label>
+            <label class="opt"><input type="radio" name="q2" value="d" /> <span>UU No. 19 Tahun 2016 tentang ITE Pasal 28 ayat (1).</span></label>
+          </div>
+          <div class="explain" data-ex="q2">
+            <b>Pembahasan:</b> Materi menyebut “UU No. 27 Tahun 2022 tentang Perlindungan Data Pribadi (UU PDP) Pasal 67 ayat (1)”.
+          </div>
+        </div>
+
+        <!-- 3) BENAR / SALAH -->
+        <div class="qbox" data-q="3">
+          <div class="qtitle"><span class="badge">3</span> Benar / Salah</div>
+          <div class="qdesc">Pernyataan: “Kamu boleh sembarangan membagikan NIK dan nomor rekening di grup chat supaya cepat.”</div>
+          <div class="options">
+            <label class="opt"><input type="radio" name="q3" value="benar" /> <span>Benar</span></label>
+            <label class="opt"><input type="radio" name="q3" value="salah" /> <span>Salah</span></label>
+          </div>
+          <div class="explain" data-ex="q3">
+            <b>Alasan singkat:</b> Materi menekankan jangan sembarangan membagikan data pribadi seperti NIK dan nomor rekening.
+          </div>
+        </div>
+
+        <!-- 4) TEBAK GAMBAR -->
+        <div class="qbox" data-q="4">
+          <div class="qtitle"><span class="badge">4</span> Tebak Gambar</div>
+          <div class="qdesc">Lihat ilustrasi di bawah ini. Jawab pertanyaannya!</div>
+          <div class="imgbox">
+            <img src="../../assets/ilustrasi1.png" alt="Ilustrasi privasi" style="max-width:100%; border-radius:14px;" />
+          </div>
+          <div class="qdesc">Pertanyaan: Tindakan pada gambar termasuk pelanggaran terkait privasi karena…</div>
+          <div class="options">
+            <label class="opt"><input type="radio" name="q4" value="a" /> <span>Karena membagikan data pribadi sensitif (NIK/nomor rekening) tanpa verifikasi & perlindungan.</span></label>
+            <label class="opt"><input type="radio" name="q4" value="b" /> <span>Karena membagikan informasi publik yang tidak berpengaruh.</span></label>
+            <label class="opt"><input type="radio" name="q4" value="c" /> <span>Karena oversharing tidak masalah selama disensor.</span></label>
+            <label class="opt"><input type="radio" name="q4" value="d" /> <span>Karena privasi bisa diabaikan jika tujuannya baik.</span></label>
+          </div>
+          <div class="explain" data-ex="q4">
+            <b>Pembahasan:</b> Data pribadi sensitif seperti NIK dan nomor rekening termasuk yang dilarang untuk dibagikan sembarangan.
+          </div>
+        </div>
+
+        <!-- 5) MELENGKAPI KALIMAT -->
+        <div class="qbox" data-q="5">
+          <div class="qtitle"><span class="badge">5</span> Melengkapi Kalimat</div>
+          <div class="qdesc">Kalimat dari materi: “Terapkan prinsip ________ Sebelum Sharing.”</div>
+          <div class="options">
+            <label class="opt"><input type="radio" name="q5" value="a" /> <span>Saring</span></label>
+            <label class="opt"><input type="radio" name="q5" value="b" /> <span>Spam</span></label>
+            <label class="opt"><input type="radio" name="q5" value="c" /> <span>Asal Bagikan</span></label>
+            <label class="opt"><input type="radio" name="q5" value="d" /> <span>Jangan Verifikasi</span></label>
+          </div>
+          <div class="explain" data-ex="q5">
+            <b>Pembahasan:</b> Pada materi tertulis: “Saring Sebelum Sharing”.
+          </div>
+        </div>
+
+        <!-- 6) PILIH LEBIH DARI SATU -->
+        <div class="qbox" data-q="6">
+          <div class="qtitle"><span class="badge">6</span> Pilih Lebih dari Satu Jawaban (Checkbox)</div>
+          <div class="qdesc">Topik: tindakan bijak saat menghindari penyalahgunaan data pribadi.</div>
+          <div class="options multi">
+            <label class="opt"><input type="checkbox" name="q6" value="a" /> <span>Mengaktifkan pengaturan privasi di akun yang dipakai.</span></label>
+            <label class="opt"><input type="checkbox" name="q6" value="b" /> <span>Memastikan info berasal dari sumber resmi/terpercaya sebelum membagikan.</span></label>
+            <label class="opt"><input type="checkbox" name="q6" value="c" /> <span>Membagikan NIK dan nomor rekening agar tidak ketinggalan info.</span></label>
+            <label class="opt"><input type="checkbox" name="q6" value="d" /> <span>Berhenti menyebarkan konten yang berpotensi merugikan tanpa verifikasi.</span></label>
+          </div>
+          <div class="explain" data-ex="q6">
+            <b>Pembahasan:</b> Jawaban benar adalah tindakan bijak seperti mengatur privasi, memverifikasi sumber, dan tidak menyebarkan data pribadi/ konten merugikan.
+          </div>
+        </div>
+
+        <!-- 7) MENJODOKKAN -->
+        <div class="qbox" data-q="7">
+          <div class="qtitle"><span class="badge">7</span> Menjodohkan</div>
+          <div class="qdesc">Cocokkan istilah di kolom kiri dengan penjelasan yang sesuai (pilihan ganda via dropdown).</div>
+          <div class="qdesc" style="margin-top:6px;">
+            <b>A.</b> Data Pribadi <br/>
+            <b>B.</b> Saring Sebelum Sharing <br/>
+            <b>C.</b> Jejak Digital
+          </div>
+          <div class="qdesc" style="margin-top:8px;">
+            <b>1.</b> Data perseorangan tertentu yang dilindungi kerahasiaannya <br/>
+            <b>2.</b> Menghindari oversharing dan verifikasi dulu sebelum membagikan <br/>
+            <b>3.</b> Komentar/unggahan yang bisa digunakan sebagai bukti
+          </div>
+
+          <div class="qdesc" style="margin-top:10px;">
+            <label>Jawaban A (Data Pribadi):</label>
+            <select id="q7A" style="width:100%;margin-top:6px;padding:12px;border-radius:16px;border:1px solid rgba(148,163,184,0.35);background:rgba(255,255,255,0.95);">
+              <option value="">Pilih...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="qdesc" style="margin-top:10px;">
+            <label>Jawaban B (Saring Sebelum Sharing):</label>
+            <select id="q7B" style="width:100%;margin-top:6px;padding:12px;border-radius:16px;border:1px solid rgba(148,163,184,0.35);background:rgba(255,255,255,0.95);">
+              <option value="">Pilih...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="qdesc" style="margin-top:10px;">
+            <label>Jawaban C (Jejak Digital):</label>
+            <select id="q7C" style="width:100%;margin-top:6px;padding:12px;border-radius:16px;border:1px solid rgba(148,163,184,0.35);background:rgba(255,255,255,0.95);">
+              <option value="">Pilih...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+
+          <div class="explain" data-ex="q7">
+            <b>Pembahasan:</b> A→1, B→2, C→3.
+          </div>
+        </div>
+
+        <!-- 8) TEBak ISTILAH -->
+        <div class="qbox" data-q="8">
+          <div class="qtitle"><span class="badge">8</span> Tebak Istilah (Pilihan Ganda)</div>
+          <div class="qdesc">Petunjuk: prinsip untuk berhenti sebentar sebelum membagikan info agar terhindar dari penyebaran yang merugikan.</div>
+          <div class="options">
+            <label class="opt"><input type="radio" name="q8" value="a" /> <span>Saring Sebelum Sharing</span></label>
+            <label class="opt"><input type="radio" name="q8" value="b" /> <span>Asal Klik</span></label>
+            <label class="opt"><input type="radio" name="q8" value="c" /> <span>Share Tanpa Verifikasi</span></label>
+            <label class="opt"><input type="radio" name="q8" value="d" /> <span>Spam Terus</span></label>
+          </div>
+          <div class="explain" data-ex="q8">
+            <b>Pembahasan:</b> Prinsip yang dimaksud adalah “Saring Sebelum Sharing”.
+          </div>
+        </div>
+
+        <!-- 9) PILIHAN GANDA - BENAR UNTUK DILAKUKAN -->
+        <div class="qbox" data-q="9">
+          <div class="qtitle"><span class="badge">9</span> Pilihan Ganda (Tindakan Bijak)</div>
+          <div class="qdesc">Sebelum membagikan informasi yang beredar, tindakan yang paling sesuai adalah…</div>
+          <div class="options">
+            <label class="opt"><input type="radio" name="q9" value="a" /> <span>Langsung share tanpa cek sumber agar cepat.</span></label>
+            <label class="opt"><input type="radio" name="q9" value="b" /> <span>Cek sumber resmi/terpercaya dan verifikasi fakta dulu.</span></label>
+            <label class="opt"><input type="radio" name="q9" value="c" /> <span>Bagikan ulang agar ramai walau belum jelas.</span></label>
+            <label class="opt"><input type="radio" name="q9" value="d" /> <span>Simpan informasi saja tanpa pertimbangan apa pun.</span></label>
+          </div>
+          <div class="explain" data-ex="q9">
+            <b>Pembahasan:</b> Materi menekankan “Saring Sebelum Sharing” dan verifikasi melalui sumber resmi/terpercaya.
+          </div>
+        </div>
+
+        <!-- 10) BENAR/ SALAH - JEJAK DIGITAL -->
+        <div class="qbox" data-q="10">
+          <div class="qtitle"><span class="badge">10</span> Benar / Salah (Jejak Digital)</div>
+          <div class="qdesc">Pernyataan: “Komentar atau unggahan di internet tidak bisa jadi bukti, karena mudah dihapus.”</div>
+          <div class="options">
+            <label class="opt"><input type="radio" name="q10" value="benar" /> <span>Benar</span></label>
+            <label class="opt"><input type="radio" name="q10" value="salah" /> <span>Salah</span></label>
+          </div>
+          <div class="explain" data-ex="q10">
+            <b>Alasan singkat:</b> Materi menyatakan komentar/unggahan meninggalkan jejak digital dan dapat digunakan sebagai bukti.
+          </div>
+        </div>
+
+        <!-- 11) CHECKBOX - APA YANG TIDAK BOLEH SHARE -->
+        <div class="qbox" data-q="11">
+          <div class="qtitle"><span class="badge">11</span> Checkbox Multi Jawaban</div>
+          <div class="qdesc">Data/informasi apa saja yang termasuk contoh “yang jangan sembarangan dibagikan” (sesuai materi)?</div>
+          <div class="options multi">
+            <label class="opt"><input type="checkbox" name="q11" value="a" /> <span>NIK</span></label>
+            <label class="opt"><input type="checkbox" name="q11" value="b" /> <span>Nomor rekening</span></label>
+            <label class="opt"><input type="checkbox" name="q11" value="c" /> <span>Informasi sensitif lain (data rekening/identitas)</span></label>
+            <label class="opt"><input type="checkbox" name="q11" value="d" /> <span>Catatan publik yang tidak terkait identitas</span></label>
+          </div>
+          <div class="explain" data-ex="q11">
+            <b>Pembahasan:</b> Materi melarang oversharing terutama data pribadi sensitif seperti NIK dan nomor rekening.
+          </div>
+        </div>
+
+        <!-- 12) MELENGKAPI KALIMAT -->
+        <div class="qbox" data-q="12">
+          <div class="qtitle"><span class="badge">12</span> Melengkapi Kalimat</div>
+          <div class="qdesc">Kalimat dari materi: “Lindungi privasi diri dengan menggunakan pengaturan ________ di setiap platform.”</div>
+          <div class="options">
+            <label class="opt"><input type="radio" name="q12" value="a" /> <span>privasi</span></label>
+            <label class="opt"><input type="radio" name="q12" value="b" /> <span>nama</span></label>
+            <label class="opt"><input type="radio" name="q12" value="c" /> <span>followers</span></label>
+            <label class="opt"><input type="radio" name="q12" value="d" /> <span>iklan</span></label>
+          </div>
+          <div class="explain" data-ex="q12">
+            <b>Pembahasan:</b> Materi menyebut “menggunakan pengaturan privasi di setiap platform dan hindari oversharing.”
+          </div>
+        </div>
+
+        <!-- 13) MENJODOKKAN -->
+        <div class="qbox" data-q="13">
+          <div class="qtitle"><span class="badge">13</span> Menjodohkan</div>
+          <div class="qdesc">Cocokkan istilah dengan maknanya (pilih via dropdown).</div>
+          <div class="qdesc" style="margin-top:6px;">
+            <b>A.</b> Oversharing <br/>
+            <b>B.</b> Jejak Digital <br/>
+            <b>C.</b> Verifikasi
+          </div>
+          <div class="qdesc" style="margin-top:8px;">
+            <b>1.</b> Proses mengecek sumber & kebenaran sebelum membagikan <br/>
+            <b>2.</b> Membagikan informasi berlebihan yang berisiko disalahgunakan <br/>
+            <b>3.</b> Aktivitas online yang dapat terekam dan digunakan sebagai bukti
+          </div>
+
+          <div class="qdesc" style="margin-top:10px;">
+            <label>Jawaban A (Oversharing):</label>
+            <select id="q13A" style="width:100%;margin-top:6px;padding:12px;border-radius:16px;border:1px solid rgba(148,163,184,0.35);background:rgba(255,255,255,0.95);">
+              <option value="">Pilih...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="qdesc" style="margin-top:10px;">
+            <label>Jawaban B (Jejak Digital):</label>
+            <select id="q13B" style="width:100%;margin-top:6px;padding:12px;border-radius:16px;border:1px solid rgba(148,163,184,0.35);background:rgba(255,255,255,0.95);">
+              <option value="">Pilih...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="qdesc" style="margin-top:10px;">
+            <label>Jawaban C (Verifikasi):</label>
+            <select id="q13C" style="width:100%;margin-top:6px;padding:12px;border-radius:16px;border:1px solid rgba(148,163,184,0.35);background:rgba(255,255,255,0.95);">
+              <option value="">Pilih...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+
+          <div class="explain" data-ex="q13">
+            <b>Pembahasan:</b> A→2, B→3, C→1.
+          </div>
+        </div>
+
+        <!-- 14) PILIHAN GANDA - RAKOMENDASI JIKA JADI KORBAN -->
+        <div class="qbox" data-q="14">
+          <div class="qtitle"><span class="badge">14</span> Pilihan Ganda</div>
+          <div class="qdesc">Jika menjadi korban/menyaksikan perundungan siber, langkah yang paling tepat adalah…</div>
+          <div class="options">
+            <label class="opt"><input type="radio" name="q14" value="a" /> <span>Abaikan agar tidak repot.</span></label>
+            <label class="opt"><input type="radio" name="q14" value="b" /> <span>Laporkan ke platform atau pihak berwajib.</span></label>
+            <label class="opt"><input type="radio" name="q14" value="c" /> <span>Sebarkan kembali agar jadi viral.</span></label>
+            <label class="opt"><input type="radio" name="q14" value="d" /> <span>Balas dengan komentar kasar.</span></label>
+          </div>
+          <div class="explain" data-ex="q14">
+            <b>Pembahasan:</b> Materi menyarankan segera melaporkan ke platform atau pihak berwajib.
+          </div>
+        </div>
+
+        <!-- 15) TEBak ISTILAH - UNDANGAN -->
+        <div class="qbox" data-q="15">
+          <div class="qtitle"><span class="badge">15</span> Tebak Istilah (Pilihan Ganda)</div>
+          <div class="qdesc">Petunjuk: tindakan membatasi siapa yang bisa melihat data pribadi agar tidak disalahgunakan.</div>
+          <div class="options">
+            <label class="opt"><input type="radio" name="q15" value="a" /> <span>Privasi</span></label>
+            <label class="opt"><input type="radio" name="q15" value="b" /> <span>Spam</span></label>
+            <label class="opt"><input type="radio" name="q15" value="c" /> <span>Viral</span></label>
+            <label class="opt"><input type="radio" name="q15" value="d" /> <span>Asal bagikan</span></label>
+          </div>
+          <div class="explain" data-ex="q15">
+            <b>Pembahasan:</b> Materi menekankan pengaturan privasi untuk mengurangi risiko penyalahgunaan data.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="btnbar">
+        <button class="btn btn-primary" onclick="gradeKuis()">
+          <i class="fa-solid fa-check"></i>
+          Cek Jawaban
+        </button>
+        <button class="btn btn-secondary" onclick="resetKuis()">
+          <i class="fa-solid fa-rotate-left"></i>
+          Ulangi
+        </button>
+      </div>
+
+      <div class="result" id="resultBox">
+        <div style="font-weight:900; margin-bottom:8px;">Hasil Kuis ✅</div>
+        Skor kamu: <b id="scoreText">0</b>
+        <div class="hint" style="margin-top:8px;">Nilai max: <span id="maxText">15</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function goBackToMenu(){
+  // arahkan ke index dan buka halaman kuis
+  window.location.href = "../../index.html#kuis";
+}
+
+    function getRadioValue(name){
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : null;
+    }
+
+    function getCheckboxValues(name){
+      const els = document.querySelectorAll(`input[name="${name}"]:checked`);
+      return Array.from(els).map(e=>e.value);
+    }
+
+    function showExplain(qNum){
+      const ex = document.querySelector(`.explain[data-ex="q${qNum}"]`);
+      if(ex) ex.style.display = 'block';
+    }
+
+    function gradeKuis(){
+      let score = 0;
+      const max = 15;
+
+      // q1
+      const q1 = getRadioValue('q1');
+      if(q1 === 'a'){score++;}
+      showExplain(1);
+
+      // q2
+      const q2 = getRadioValue('q2');
+      if(q2 === 'a'){score++;}
+      showExplain(2);
+
+      // q3
+      const q3 = getRadioValue('q3');
+      if(q3 === 'salah'){score++;}
+      showExplain(3);
+
+      // q4
+      const q4 = getRadioValue('q4');
+      if(q4 === 'a'){score++;}
+      showExplain(4);
+
+      // q5
+      const q5 = getRadioValue('q5');
+      if(q5 === 'a'){score++;}
+      showExplain(5);
+
+      // q6 (benar: a,b,d)
+      const q6 = getCheckboxValues('q6').sort();
+      const expected = ['a','b','d'].sort();
+      const isSame = q6.length === expected.length && q6.every((v,i)=>v===expected[i]);
+      if(isSame){score++;}
+      showExplain(6);
+
+      // q7 A=1, B=2, C=3
+      const q7A = document.getElementById('q7A').value;
+      const q7B = document.getElementById('q7B').value;
+      const q7C = document.getElementById('q7C').value;
+      if(q7A === '1' && q7B === '2' && q7C === '3'){score++;}
+      showExplain(7);
+
+      // q8
+      const q8 = getRadioValue('q8');
+      if(q8 === 'a'){score++;}
+      showExplain(8);
+
+      // q9
+      const q9 = getRadioValue('q9');
+      if(q9 === 'b'){score++;}
+      showExplain(9);
+
+      // q10
+      const q10 = getRadioValue('q10');
+      if(q10 === 'benar'){score++;}
+      showExplain(10);
+
+      // q11
+      const q11 = getCheckboxValues('q11').sort();
+      const expected11 = ['a','b','c'].sort();
+      const isSame11 = q11.length === expected11.length && q11.every((v,i)=>v===expected11[i]);
+      if(isSame11){score++;}
+      showExplain(11);
+
+      // q12
+      const q12 = getRadioValue('q12');
+      if(q12 === 'a'){score++;}
+      showExplain(12);
+
+      // q13 A=2, B=3, C=1
+      const q13A = document.getElementById('q13A').value;
+      const q13B = document.getElementById('q13B').value;
+      const q13C = document.getElementById('q13C').value;
+      if(q13A === '2' && q13B === '3' && q13C === '1'){score++;}
+      showExplain(13);
+
+      // q14
+      const q14 = getRadioValue('q14');
+      if(q14 === 'b'){score++;}
+      showExplain(14);
+
+      // q15
+      const q15 = getRadioValue('q15');
+      if(q15 === 'a'){score++;}
+      showExplain(15);
+
+      document.getElementById('scoreText').innerText = score;
+      document.getElementById('maxText').innerText = 15;
+      document.getElementById('resultBox').style.display = 'block';
+    }
+
+    function resetKuis(){
+      // reset radio
+      document.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+      // reset checkbox
+      document.querySelectorAll('input[type="checkbox"]').forEach(c=>c.checked=false);
+      // reset select
+      ['q7A','q7B','q7C','q13A','q13B','q13C'].forEach(id=>{
+        const el = document.getElementById(id);
+        if(el) el.value = '';
+      });
+      // hide explains & result
+      document.querySelectorAll('.explain').forEach(e=>e.style.display='none');
+      document.getElementById('resultBox').style.display='none';
+    }
+
+    // init: sembunyikan explain
+    document.querySelectorAll('.explain').forEach(e=>e.style.display='none');
+    window.addEventListener("load", () => {
+
+  if(window.location.hash === "#materi"){
+    hideAllPages();
+    document.getElementById("materiPage").style.display = "block";
+  }
+
+  if(window.location.hash === "#kuis"){
+    hideAllPages();
+    document.getElementById("kuisPage").style.display = "block";
+  }
+
+});
+  </script>
+</body>
+</html>
+

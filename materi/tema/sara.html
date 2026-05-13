@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Materi - SARA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body{background:linear-gradient(to bottom,#e0f2fe,#f0f9ff,#f8fafc);min-height:100vh;padding:20px;}
+    .wrap{max-width:1100px;margin:0 auto;}
+    .card{background:rgba(255,255,255,0.08);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.12);border-radius:24px;box-shadow:0 20px 40px rgba(59,130,246,0.10);overflow:hidden;}
+    .header{display:flex;align-items:center;gap:14px;padding:20px 20px 10px;}
+    .back-btn{width:48px;height:48px;border-radius:16px;border:1px solid rgba(255,255,255,0.18);background:linear-gradient(160deg,#2563eb,#3b82f6);color:#e2e8f0;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .title{
+  color:#0f172a;
+  font-weight:700;
+  letter-spacing:0.5px;
+}
+    
+    .chip{
+  background:#e2e8f0;
+  color:#1e293b;
+  border:1px solid #cbd5e1;
+  padding:10px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:0.9rem;
+  font-weight:600;
+}
+    .section{padding:0 20px 22px;}
+    .section h3{
+  color:#0f172a;   /* 🔥 warna gelap biar kebaca */
+  margin:18px 0 10px;
+  font-size:1.2rem;
+  font-weight:700;
+}
+    .section p{
+  color:#334155;
+  line-height:1.9;
+  font-size:1rem;
+  font-weight:500;
+}
+
+.section ul{
+  margin-left:18px;
+}
+
+.section li{
+  color:#1e293b;
+  line-height:1.9;
+  font-weight:500;
+}
+    .case-box p{
+  margin:8px 0;
+}
+
+.case-title{
+  color:#0f172a;
+  font-weight:700;
+  margin-bottom:6px;
+}
+    a.link{color:#4ade80;text-decoration:underline;}
+    a.link:hover{color:#dcfce7;}
+    .subnav{
+  margin:0 20px;        /* ✅ ini penting */
+  padding:0 0 10px 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.video-container{
+  width:100%;
+  background:#000;
+  aspect-ratio:16/9;   /* 🔥 kunci biar proporsional */
+  overflow:hidden;
+}
+
+.video-container video{
+  width:100%;
+  height:100%;
+  object-fit:contain;  /* 🔥 ini bikin video TIDAK KE POTONG */
+  display:block;
+}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="header">
+        <button class="back-btn" onclick="goBack()" aria-label="Kembali">
+  <i class="fa-solid fa-arrow-left"></i>
+</button>
+
+        <div class="title">SARA</div>
+      </div>
+
+      <div class="video-container">
+  <video controls width="100%">
+    <source src="../../assets/video/sara.mp4" type="video/mp4">
+    Browser tidak mendukung video
+  </video>
+</div>
+
+      <div class="subnav" aria-label="Navigasi subbab">
+        <button class="chip" onclick="scrollToId('pengertian')">Pengertian</button>
+        <button class="chip" onclick="scrollToId('tips')">Yang Harus Diwaspadai & Tips Bijak</button>
+        <button class="chip" onclick="scrollToId('dampak-korban')">Dampak Korban</button>
+        <button class="chip" onclick="scrollToId('dampak-pelaku')">Dampak Pelaku</button>
+        <button class="chip" onclick="scrollToId('undang-undang')">Undang-undang</button>
+        <button class="chip" onclick="scrollToId('contoh-kasus')">Contoh Kasus</button>
+      </div>
+
+      <div class="section">
+        <section id="pengertian">
+          <h3>Pengertian</h3>
+          <p>SARA adalah akronim dari Suku, Agama, Ras, dan Antargolongan. Isu SARA merujuk pada berbagai pandangan atau tindakan yang didasarkan pada sentimen identitas diri yang menyangkut keturunan, agama, kebangsaan, atau kelompok tertentu. Isu SARA sering kali sensitif karena dapat memicu konflik dan diskriminasi.</p>
+        </section>
+
+        <section id="tips">
+          <h3>Yang Harus Diwaspadai dan Tips Bijak Bermedia Sosial</h3>
+          <ul>
+            <li>Konten berbau SARA sering dikemas sebagai “humor” atau “opini”, padahal tetap dapat menimbulkan diskriminasi dan perpecahan.</li>
+            <li>Tolak dan laporkan konten yang merendahkan suku, agama, ras, atau golongan tertentu meski dibungkus dengan candaan.</li>
+            <li>Gunakan bahasa santun dan hormati perbedaan.</li>
+          </ul>
+        </section>
+
+        <section id="dampak-korban">
+          <h3>Dampak terhadap Korban</h3>
+          <ul>
+            <li>Mengalami trauma psikologis yang membekas, terutama jika kekerasan melibatkan ancaman nyawa atau pelecehan identitas.</li>
+            <li>Tindakan SARA dapat berujung pada kekerasan fisik, cedera serius, bahkan kematian.</li>
+          </ul>
+        </section>
+
+        <section id="dampak-pelaku">
+          <h3>Dampak terhadap Pelaku</h3>
+          <ul>
+            <li>Berpotensi mengalami sanksi sosial berupa dikucilkan dari masyarakat.</li>
+            <li>Mendapat citra negatif yang permanen, terutama jika terekam di media sosial.</li>
+          </ul>
+        </section>
+
+        <section id="undang-undang">
+          <h3>Undang-undang yang Mengatur</h3>
+          <p>Pasal 28 ayat (2) UU 1/2024 jo. Pasal 45A ayat (2) UU 1/2024.</p>
+        </section>
+
+        <section id="contoh-kasus">
+          <h3>Contoh Kasus</h3>
+          <div class="case-box">
+            <div class="case-title">Polisi Ringkus Pelaku Ujaran Kebencian SARA terhadap Masyarakat Sunda di Media Sosial</div>
+            <p>Kepolisian Daerah Jawa Barat (Polda Jabar) bertindak cepat merespons keresahan masyarakat terkait unggahan bermuatan SARA di media sosial. Seorang pria berinisial MAFPN alias Resbob ditetapkan sebagai tersangka kasus ujaran kebencian terhadap masyarakat Sunda dan kelompok suporter Viking.</p>
+            <p>Sumber: Detik.com</p>
+            <a href="https://tribratanews.jabar.polri.go.id/polisi-ringkus-pelaku-ujaran-kebencian-sara-terhadap-masyarakat-sunda-di-media-sosial/" 
+   target="_blank" 
+   class="link">
+   Klik di sini
+</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  </script>
+  <script>
+
+function goBack(){
+
+  const lastPage = sessionStorage.getItem("lastPage");
+
+  if(lastPage === "materi"){
+
+    window.location.href = "../../index.html#materi";
+
+  } else {
+
+    window.location.href = "../../index.html";
+
+  }
+
+}
+
+</script>
+</body>
+</html>
+

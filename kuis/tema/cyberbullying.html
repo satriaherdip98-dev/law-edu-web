@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HOAKS DAN LITERASI DIGITAL</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+/* ===== GLOBAL ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  background:linear-gradient(135deg,#e0f2fe,#f8fafc);
+  display:flex;
+  justify-content:center;
+  padding:20px;
+  color:#0f172a;
+}
+
+/* ===== LAYOUT ===== */
+.wrap{max-width:900px;width:100%;}
+.card{
+  background:white;
+  border-radius:24px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+  overflow:hidden;
+}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px;
+}
+.back-btn{
+  background:#2563eb;
+  color:white;
+  border:none;
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:18px;
+}
+.title h1{
+  font-size:1.2rem;
+  font-weight:600;
+}
+
+.intro{
+  padding:0 20px 10px;
+  color:#334155;
+}
+
+.meta{
+  display:flex;
+  gap:8px;
+  padding:0 20px 10px;
+}
+.chip{
+  background:#e0f2fe;
+  padding:6px 10px;
+  border-radius:10px;
+  font-size:12px;
+}
+
+/* ===== CONTENT ===== */
+.content{
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.qbox{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  padding:20px;
+  border-radius:20px;
+}
+
+.qheader{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.badge{
+  background:linear-gradient(135deg,#38bdf8,#6366f1);
+  color:white;
+  width:32px;
+  height:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  font-weight:600;
+}
+
+.qtitle{font-weight:600;}
+
+.qdesc{
+  margin-bottom:12px;
+  color:#334155;
+}
+
+/* ===== OPTIONS ===== */
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.opt{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px;
+  border-radius:16px;
+  background:white;
+  border:1px solid #e2e8f0;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.opt:hover{
+  background:#e0f2fe;
+  border-color:#38bdf8;
+}
+
+/* ===== RESULT ===== */
+.result{
+  margin-top:10px;
+  font-weight:600;
+}
+
+.explain{
+  margin-top:10px;
+  font-size:14px;
+  color:#334155;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  margin-top:10px;
+  width:100%;
+  font-weight:600;
+}
+
+.btn-primary{background:#2563eb;color:white;}
+.btn-secondary{background:#6366f1;color:white;}
+html {
+  font-size: 18px; /* default biasanya 16px */
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+<div class="card">
+
+<div class="topbar">
+  <button class="back-btn" onclick="history.back()">←</button>
+  <div class="title">
+    <h1>Kuis – Etika Komentar dan Chat</h1>
+  </div>
+</div>
+
+<div class="intro">
+  Pilih jawaban yang paling tepat untuk menyelesaikan kuis ini.
+</div>
+
+<div class="content" id="quiz"></div>
+
+<div style="padding:20px">
+  <button class="btn btn-primary" onclick="checkAnswers()">Cek Jawaban</button>
+  <button class="btn btn-secondary" onclick="resetQuiz()">Reset</button>
+  <div class="result" id="score"></div>
+</div>
+
+</div>
+</div>
+
+<script>
+const quizData = [
+
+{
+type:"radio",
+title:"Etika Komunikasi",
+q:"Komentar yang paling sopan di media sosial adalah...",
+options:[
+"Postinganmu jelek!",
+"Kamu norak banget.",
+"Kontennya menarik, semangat terus ya!",
+"Hapus aja akunmu."
+],
+answer:2
+},
+
+{
+type:"truefalse",
+title:"Chat Digital",
+q:"Menggunakan kata kasar di grup sekolah termasuk perilaku yang tidak sopan.",
+answer:true
+},
+
+{
+type:"radio",
+title:"Jejak Digital",
+q:"Mengapa kita harus berhati-hati saat berkomentar di internet?",
+options:[
+"Komentar bisa menjadi jejak digital",
+"Komentar otomatis hilang",
+"Semua komentar bersifat rahasia",
+"Tidak ada yang bisa melihat"
+],
+answer:0
+},
+
+{
+type:"radio",
+title:"Studi Kasus",
+q:"Lina ingin membalas pesan marah dengan kasar. Apa tindakan paling bijak?",
+options:[
+"Membalas lebih kasar",
+"Menunggu tenang sebelum membalas",
+"Mengunggah screenshot",
+"Mengajak teman menghina"
+],
+answer:1
+},
+
+{
+type:"radio",
+title:"Body Shaming",
+q:"Perilaku mengejek bentuk tubuh seseorang termasuk...",
+options:[
+"Dukungan digital",
+"Body shaming",
+"Komunikasi sehat",
+"Motivasi belajar"
+],
+answer:1
+},
+
+{
+type:"checkbox",
+title:"Etika Media Sosial",
+q:"Pilih 2 tindakan yang menunjukkan etika digital baik!",
+options:[
+"Menghormati pendapat orang lain",
+"Menyebarkan hinaan",
+"Menggunakan bahasa sopan",
+"Mengirim spam"
+],
+answer:[0,2]
+},
+
+{
+type:"match",
+title:"Menjodohkan",
+q:"Pasangkan tindakan dengan dampaknya",
+pairs:[
+["Komentar kasar","Konflik digital"],
+["Body shaming","Menyakiti mental"],
+["Chat sopan","Komunikasi nyaman"]
+]
+},
+
+{
+type:"text",
+title:"Tebak Istilah",
+q:"Ucapan yang menyerang kelompok tertentu karena identitasnya disebut...",
+answer:"hate speech"
+},
+
+{
+type:"text",
+title:"Isian",
+q:"Saat mengirim pesan kepada guru, kita harus menggunakan bahasa yang ______.",
+answer:"sopan"
+},
+
+{
+type:"ordering",
+title:"Urutan Chat",
+q:"Urutkan etika menghubungi guru lewat chat",
+options:[
+"Perkenalkan diri",
+"Gunakan salam",
+"Sampaikan tujuan",
+"Ucapkan terima kasih"
+],
+answer:[1,0,2,3]
+},
+
+{
+type:"radio",
+title:"Toxic Comment",
+q:"Komentar yang termasuk toxic adalah...",
+options:[
+"Semangat belajar ya!",
+"Videomu membantu sekali",
+"Kamu bodoh banget!",
+"Terima kasih informasinya"
+],
+answer:2
+},
+
+{
+type:"truefalse",
+title:"Etika Media Sosial",
+q:"Sebelum berkomentar kita perlu memikirkan dampaknya bagi orang lain.",
+answer:true
+},
+
+{
+type:"radio",
+title:"UU ITE",
+q:"Mengapa komentar fitnah berbahaya?",
+options:[
+"Bisa merugikan dan melanggar hukum",
+"Membuat akun terkenal",
+"Menambah followers",
+"Tidak berdampak"
+],
+answer:0
+},
+
+{
+type:"radio",
+title:"Jejak Digital",
+q:"Apa pelajaran dari komentar kasar yang viral?",
+options:[
+"Komentar digital bisa berdampak panjang",
+"Semua komentar aman",
+"Viral selalu positif",
+"Internet menghapus data"
+],
+answer:0
+},
+
+{
+type:"radio",
+title:"Studi Kasus",
+q:"Apa tindakan terbaik saat melihat teman dihina di komentar?",
+options:[
+"Ikut menghina",
+"Membiarkan",
+"Memberi dukungan dan melaporkan",
+"Menyebarkan video"
+],
+answer:2
+}
+
+];
+const quizContainer = document.getElementById("quiz");
+
+quizData.forEach((q,i)=>{
+let html = `<div class="qbox">
+
+<div class="qheader">
+  <div class="badge">${i+1}</div>
+  <div class="qtitle">${q.title}</div>
+</div>
+
+<div class="qdesc">${q.q}</div>
+<div class="options">`;
+
+if(q.type==="radio"){
+q.options.forEach((opt,j)=>{
+html+=`<label class="opt">
+<input type="radio" name="q${i}" value="${j}"> ${opt}
+</label>`;
+});
+}
+
+if(q.type==="checkbox"){
+q.options.forEach((opt,j)=>{
+html+=`<label class="opt">
+<input type="checkbox" name="q${i}" value="${j}"> ${opt}
+</label>`;
+});
+}
+
+if(q.type==="text"){
+html+=`<input type="text" id="q${i}" class="opt">`;
+}
+
+if(q.type==="truefalse"){
+html+=`
+<label class="opt"><input type="radio" name="q${i}" value="true"> Benar</label>
+<label class="opt"><input type="radio" name="q${i}" value="false"> Salah</label>
+`;
+}
+
+html+=`</div>
+<div class="explain" id="exp${i}"></div>
+</div>`;
+
+quizContainer.innerHTML+=html;
+});
+
+function checkAnswers(){
+let score=0;
+
+quizData.forEach((q,i)=>{
+let correct=false;
+
+if(q.type==="radio"){
+let val=document.querySelector(`input[name=q${i}]:checked`);
+if(val && parseInt(val.value)===q.answer) correct=true;
+}
+
+if(q.type==="checkbox"){
+let vals=[...document.querySelectorAll(`input[name=q${i}]:checked`)].map(v=>parseInt(v.value));
+if(JSON.stringify(vals.sort())===JSON.stringify(q.answer)) correct=true;
+}
+
+if(q.type==="text"){
+let val=document.getElementById(`q${i}`).value.toLowerCase();
+if(val===q.answer) correct=true;
+}
+
+if(q.type==="truefalse"){
+let val=document.querySelector(`input[name=q${i}]:checked`);
+if(val && (val.value==="true")===q.answer) correct=true;
+}
+
+if(correct) score++;
+
+document.getElementById(`exp${i}`).innerHTML =
+(correct?"✅ Benar<br>":"❌ Salah<br>")+q.explain;
+});
+
+document.getElementById("score").innerHTML="Skor: "+score+"/"+quizData.length;
+}
+
+function resetQuiz(){
+location.reload();
+}
+</script>
+
+</body>
+</html>

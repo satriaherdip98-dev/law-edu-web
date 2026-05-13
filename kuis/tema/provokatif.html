@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HOAKS DAN LITERASI DIGITAL</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+/* ===== GLOBAL ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  background:linear-gradient(135deg,#e0f2fe,#f8fafc);
+  display:flex;
+  justify-content:center;
+  padding:20px;
+  color:#0f172a;
+}
+
+/* ===== LAYOUT ===== */
+.wrap{max-width:900px;width:100%;}
+.card{
+  background:white;
+  border-radius:24px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+  overflow:hidden;
+}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px;
+}
+.back-btn{
+  background:#2563eb;
+  color:white;
+  border:none;
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:18px;
+}
+.title h1{
+  font-size:1.2rem;
+  font-weight:600;
+}
+
+.intro{
+  padding:0 20px 10px;
+  color:#334155;
+}
+
+.meta{
+  display:flex;
+  gap:8px;
+  padding:0 20px 10px;
+}
+.chip{
+  background:#e0f2fe;
+  padding:6px 10px;
+  border-radius:10px;
+  font-size:12px;
+}
+
+/* ===== CONTENT ===== */
+.content{
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.qbox{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  padding:20px;
+  border-radius:20px;
+}
+
+.qheader{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:8px;
+}
+
+.badge{
+  background:linear-gradient(135deg,#38bdf8,#6366f1);
+  color:white;
+  width:32px;
+  height:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  font-weight:600;
+}
+
+.qtitle{font-weight:600;}
+
+.qdesc{
+  margin-bottom:12px;
+  color:#334155;
+}
+
+/* ===== OPTIONS ===== */
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.opt{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px;
+  border-radius:16px;
+  background:white;
+  border:1px solid #e2e8f0;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.opt:hover{
+  background:#e0f2fe;
+  border-color:#38bdf8;
+}
+
+/* ===== RESULT ===== */
+.result{
+  margin-top:10px;
+  font-weight:600;
+}
+
+.explain{
+  margin-top:10px;
+  font-size:14px;
+  color:#334155;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  margin-top:10px;
+  width:100%;
+  font-weight:600;
+}
+
+.btn-primary{background:#2563eb;color:white;}
+.btn-secondary{background:#6366f1;color:white;}
+html {
+  font-size: 18px; /* default biasanya 16px */
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+<div class="card">
+
+<div class="topbar">
+  <button class="back-btn" onclick="history.back()">←</button>
+  <div class="title">
+    <h1>Kuis – Provokatif</h1>
+  </div>
+</div>
+
+<div class="intro">
+  Pilih jawaban yang paling tepat untuk menyelesaikan kuis ini.
+</div>
+
+<div class="content" id="quiz"></div>
+
+<div style="padding:20px">
+  <button class="btn btn-primary" onclick="checkAnswers()">Cek Jawaban</button>
+  <button class="btn btn-secondary" onclick="resetQuiz()">Reset</button>
+  <div class="result" id="score"></div>
+</div>
+
+</div>
+</div>
+
+<script>
+const quizData = [
+
+{
+type:"radio",
+title:"Konten Provokatif",
+q:"Apa yang dimaksud konten provokatif?",
+options:[
+"Konten edukasi",
+"Konten yang memancing emosi dan konflik",
+"Konten olahraga",
+"Konten musik"
+],
+answer:1,
+explain:"Konten provokatif dibuat untuk memancing kemarahan, kebencian, atau perpecahan."
+},
+
+{
+type:"radio",
+title:"Literasi Digital",
+q:"Apa yang harus dilakukan saat melihat postingan provokatif?",
+options:[
+"Langsung menyebarkan",
+"Ikut marah di komentar",
+"Memeriksa kebenaran informasi",
+"Menambahkan hinaan"
+],
+answer:2,
+explain:"Literasi digital membantu kita tidak mudah terprovokasi."
+},
+
+{
+type:"radio",
+title:"Tebak Gambar",
+q:"Tujuan utama postingan provokatif adalah...",
+options:[
+"Memberi edukasi",
+"Memancing emosi pengguna",
+"Menghibur penonton",
+"Menyebarkan motivasi"
+],
+answer:1,
+explain:"Konten provokatif biasanya dibuat untuk memancing reaksi emosional."
+},
+
+{
+type:"text",
+title:"Isian",
+q:"Sebelum percaya berita viral, kita harus melakukan ______ fakta.",
+answer:"verifikasi",
+explain:"Verifikasi penting untuk memastikan informasi benar."
+},
+
+{
+type:"radio",
+title:"Adu Domba",
+q:"Konten adu domba biasanya bertujuan untuk...",
+options:[
+"Menyatukan masyarakat",
+"Memecah hubungan antar kelompok",
+"Menghibur penonton",
+"Memberi informasi pendidikan"
+],
+answer:1,
+explain:"Provokasi sering digunakan untuk menciptakan konflik."
+},
+
+{
+type:"radio",
+title:"Studi Kasus",
+q:"Sebuah akun mengunggah video editan untuk memancing kemarahan masyarakat. Apa tindakan paling tepat?",
+options:[
+"Menyebarkan video",
+"Ikut marah di komentar",
+"Memeriksa fakta dan melaporkan jika menyesatkan",
+"Membuat video balasan kasar"
+],
+answer:2,
+explain:"Konten provokatif harus ditangani dengan bijak dan tidak disebarkan."
+},
+
+{
+type:"radio",
+title:"Emosi Digital",
+q:"Mengapa konten provokatif mudah viral?",
+options:[
+"Karena memancing emosi orang",
+"Karena selalu benar",
+"Karena edukatif",
+"Karena ilmiah"
+],
+answer:0,
+explain:"Konten yang memancing emosi sering cepat menyebar di media sosial."
+},
+
+{
+type:"checkbox",
+title:"Pencegahan",
+q:"Pilih 2 tindakan agar tidak mudah terprovokasi!",
+options:[
+"Membaca informasi dari sumber terpercaya",
+"Langsung percaya judul viral",
+"Memeriksa fakta",
+"Menyebarkan berita tanpa membaca isi"
+],
+answer:[0,2],
+explain:"Sikap kritis membantu kita terhindar dari provokasi."
+},
+
+{
+type:"radio",
+title:"Istilah",
+q:"Tindakan memancing emosi disebut...",
+options:[
+"Verifikasi",
+"Adu domba",
+"Provokasi",
+"Validasi"
+],
+answer:2,
+explain:"Provokasi berarti memancing emosi atau konflik."
+},
+
+{
+type:"text",
+title:"Tebak Istilah",
+q:"Tindakan memancing kemarahan atau konflik disebut...",
+answer:"provokasi",
+explain:"Provokasi dilakukan untuk memengaruhi emosi orang lain."
+},
+
+{
+type:"radio",
+title:"Clickbait",
+q:"Ciri judul provokatif adalah...",
+options:[
+"Tenang dan netral",
+"Memancing rasa marah atau takut",
+"Sangat ilmiah",
+"Tidak menarik perhatian"
+],
+answer:1,
+explain:"Judul provokatif dibuat agar orang bereaksi emosional."
+},
+
+{
+type:"radio",
+title:"Urutan Logika",
+q:"Langkah terakhir dalam memeriksa informasi adalah...",
+options:[
+"Membaca isi",
+"Mengecek sumber",
+"Membandingkan media",
+"Menentukan kebenaran"
+],
+answer:3,
+explain:"Langkah akhir adalah menentukan valid atau tidak."
+},
+
+{
+type:"radio",
+title:"Dampak",
+q:"Apa dampak konten provokatif?",
+options:[
+"Persatuan meningkat",
+"Konflik sosial bertambah",
+"Masyarakat tenang",
+"Hubungan membaik"
+],
+answer:1,
+explain:"Provokasi dapat menyebabkan perpecahan."
+},
+
+{
+type:"truefalse",
+title:"Benar / Salah",
+q:"Konten editan dapat digunakan untuk memprovokasi masyarakat.",
+answer:true,
+explain:"Video atau gambar editan sering dipakai untuk manipulasi opini."
+},
+
+{
+type:"checkbox",
+title:"Pencegahan",
+q:"Pilih 2 langkah menghadapi konten provokatif!",
+options:[
+"Verifikasi informasi",
+"Ikut menyebarkan",
+"Laporkan jika berbahaya",
+"Membalas dengan hinaan"
+],
+answer:[0,2],
+explain:"Konten provokatif tidak boleh disebarkan sembarangan."
+}
+
+];
+const quizContainer = document.getElementById("quiz");
+
+quizData.forEach((q,i)=>{
+let html = `<div class="qbox">
+
+<div class="qheader">
+  <div class="badge">${i+1}</div>
+  <div class="qtitle">${q.title}</div>
+</div>
+
+<div class="qdesc">${q.q}</div>
+<div class="options">`;
+
+if(q.type==="radio"){
+q.options.forEach((opt,j)=>{
+html+=`<label class="opt">
+<input type="radio" name="q${i}" value="${j}"> ${opt}
+</label>`;
+});
+}
+
+if(q.type==="checkbox"){
+q.options.forEach((opt,j)=>{
+html+=`<label class="opt">
+<input type="checkbox" name="q${i}" value="${j}"> ${opt}
+</label>`;
+});
+}
+
+if(q.type==="text"){
+html+=`<input type="text" id="q${i}" class="opt">`;
+}
+
+if(q.type==="truefalse"){
+html+=`
+<label class="opt"><input type="radio" name="q${i}" value="true"> Benar</label>
+<label class="opt"><input type="radio" name="q${i}" value="false"> Salah</label>
+`;
+}
+
+html+=`</div>
+<div class="explain" id="exp${i}"></div>
+</div>`;
+
+quizContainer.innerHTML+=html;
+});
+
+function checkAnswers(){
+let score=0;
+
+quizData.forEach((q,i)=>{
+let correct=false;
+
+if(q.type==="radio"){
+let val=document.querySelector(`input[name=q${i}]:checked`);
+if(val && parseInt(val.value)===q.answer) correct=true;
+}
+
+if(q.type==="checkbox"){
+let vals=[...document.querySelectorAll(`input[name=q${i}]:checked`)].map(v=>parseInt(v.value));
+if(JSON.stringify(vals.sort())===JSON.stringify(q.answer)) correct=true;
+}
+
+if(q.type==="text"){
+let val=document.getElementById(`q${i}`).value.toLowerCase();
+if(val===q.answer) correct=true;
+}
+
+if(q.type==="truefalse"){
+let val=document.querySelector(`input[name=q${i}]:checked`);
+if(val && (val.value==="true")===q.answer) correct=true;
+}
+
+if(correct) score++;
+
+document.getElementById(`exp${i}`).innerHTML =
+(correct?"✅ Benar<br>":"❌ Salah<br>")+q.explain;
+});
+
+document.getElementById("score").innerHTML="Skor: "+score+"/"+quizData.length;
+}
+
+function resetQuiz(){
+location.reload();
+}
+</script>
+
+</body>
+</html>
